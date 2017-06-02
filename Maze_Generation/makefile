@@ -3,7 +3,7 @@ CC = gcc
 COMPILER_FLAGS = -Wall -std=c99 -I/opt/local/include
 LINKER_FLAGS = -lm -L/opt/local/lib
 
-DEPS = MazeGeneration.c Queue.c
+DEPS = MazeGeneration.c Queue.c RandomizedQueue.c
 
 BUILD_FILES = GenerateMaze
 
