@@ -6,11 +6,11 @@
 
 /*** INCLUDES: ***/
 
-
+#include <stdbool.h>
 
 /*** DEFINES: ***/
 
-
+#define FAULTY_DEQUEUE_RESULT_FAIL -1000
 
 /*** STRUCTS: ***/
 
@@ -109,3 +109,4 @@ typedef struct
 	int minLoopDistance;
 } MazeTemplate;
 
+/*** FUNCTION PROTOTYPES: ***/
