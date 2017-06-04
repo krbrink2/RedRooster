@@ -2,11 +2,9 @@
 #include <SFML/System.hpp>
 #include <time.h>
 #include <iostream>
-#include "Game.h"
-#include "GameState.h"
-
-#define FRAMES_PER_SECOND (25)
-#define SKIP_TICKS (1000/FRAMES_PER_SECOND)
+#include "Globals.h"
+// #include "Game.h"
+// #include "GameState.h"
 
 Game game;
 
@@ -14,16 +12,16 @@ int main(){
   // Prep for main loop
   // Ticks to skip
   sf::Time skipTime = sf::milliseconds(SKIP_TICKS);
-  sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+  //game.window = sf::RenderWindow(sf::VideoMode(200, 200), GAME_TITLE, sf::Style::Fullscreen);
   sf::CircleShape shape(100.f);
   shape.setFillColor(sf::Color::Green);
 
-  while (window.isOpen()){  // Main loop
+  while (game.window.isOpen()){  // Main loop
     // Get events
     sf::Event event;
-    while (window.pollEvent(event)){
+    while (game.window.pollEvent(event)){
       if (event.type == sf::Event::Closed)
-        window.close();
+        game.window.close();
     }
 
     // Sleep
@@ -35,9 +33,9 @@ int main(){
     // Update game
 
     // Draw game
-    window.clear();
-    window.draw(shape);
-    window.display();
+    game.window.clear();
+    game.window.draw(shape);
+    game.window.display();
 
     }
 

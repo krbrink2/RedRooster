@@ -12,13 +12,13 @@ default: $(TARGET)
 $(TARGET): main.o $(OBJS)
 	$(CC) -o $(TARGET) main.o $(OBJS) $(CFLAGS) -lsfml-graphics -lsfml-window -lsfml-system
 
-main.o: main.cpp $(HEADERS)
+main.o: Globals.h
 	$(CC) -c main.cpp $(CFLAGS)
 
-Game.o: Game.cpp Game.h GameState.h
+Game.o: GameState.h
 	$(CC) -c Game.cpp $(CFLAGS)
 
-GameState.o: GameState.cpp GameState.h
+GameState.o:
 	$(CC) -c GameState.cpp $(CFLAGS)
 
 clean:

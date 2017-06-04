@@ -1,7 +1,9 @@
 #include "Game.h"
+#include "Globals.h"
 
 // Constructor
 Game::Game():
+	window(sf::VideoMode(200, 200), GAME_TITLE, sf::Style::Fullscreen),
 	run(true){
 }
 
