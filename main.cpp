@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <time.h>
+#include <iostream>
 #include "Game.h"
 #include "GameState.h"
 
@@ -10,15 +11,14 @@
 Game game;
 
 int main(){
-
+  // Prep for main loop
   // Ticks to skip
   sf::Time skipTime = sf::milliseconds(SKIP_TICKS);
-
   sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
   sf::CircleShape shape(100.f);
   shape.setFillColor(sf::Color::Green);
 
-  while (window.isOpen()){
+  while (window.isOpen()){  // Main loop
     // Get events
     sf::Event event;
     while (window.pollEvent(event)){
