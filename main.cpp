@@ -12,7 +12,7 @@ int main(){
   // Prep for main loop
   // Ticks to skip
   sf::Time skipTime = sf::milliseconds(SKIP_TICKS);
-  //game.window = sf::RenderWindow(sf::VideoMode(200, 200), GAME_TITLE, sf::Style::Fullscreen);
+  
   sf::CircleShape shape(100.f);
   shape.setFillColor(sf::Color::Green);
 
