@@ -109,4 +109,130 @@ typedef struct
 	int minLoopDistance;
 } MazeTemplate;
 
+/**
+@typedef SearchPoint
+@brief A struct representing a single space in the maze. Used for determing the
+       shortest distance in the maze between two spaces.
+@var row Row index of the space in the maze.
+@var col Column index of the space in the maze.
+@var prevSpace Integer indicating which space was searched that lead to this
+     space being searched. (1 => space above, 2 => space below, etc)
+@var pathLength Distance of this space from the space where the search started.
+*/
+typedef struct 
+{
+	int row;
+	int col;
+	int prevSpace;
+	int pathLength;
+} SearchPoint;
+
 /*** FUNCTION PROTOTYPES: ***/
+
+/**
+@fn buildMaze
+@brief Procedurally generates a maze using the given parameters.
+@param maze Pointer to an initialized Maze struct.
+@param template An initialized MazeTemplate struct which contains the various
+                parameters for the maze's construction, particularly modifiers
+                to the probabilities of various paths. 
+*/
+void buildMaze (Maze *maze, MazeTemplate template);
+
+/**
+@fn iterateBranch
+@brief Moves a branch to a single unvisited neighboring space, then checks if
+       new branches should be spawned from the branch's starting space.
+@param maze Pointer to the current Maze struct.
+@param template The MazeTemplate struct defining attributes of the maze.
+@param queue Pointer to the Queue of branches.
+@param branch Pointer to the branch to be iterated on (the last branch to be
+       dequeued from queue).
+*/
+void iterateBranch (Maze *maze, MazeTemplate template, Queue *queue, 
+	                Branch *branch);
+
+/**
+@fn genBranches
+@brief Determines how many new branches should be created following an old 
+       branch moving into a new space. Any branches created this way will be 
+       automatically moved into an unvisited neighboring space and placed into
+       the queue of branches.
+@param maze Pointer to the current Maze struct.
+@param template The MazeTemplate containing this maze's parameters.
+@param queue Pointer to the Queue of branches.
+@param branch Pointer to the old branch which is being evaluated for spawning
+       new branches.
+@param row The row that the old branch came from.
+@param col The column that the old branch came from.
+@param targetRow The row that the old branch has just moved to.
+@param targetCol The column that the old branch has just moved to.
+@return The number of new branches created (0 through 3) or an error code.
+*/
+int genBranches (Maze *maze, MazeTemplate template, Queue *queue, Branch *branch, 
+	             int row, int col, int targetRow, int targetCol);
+
+/**
+@fn getNeighbors
+@brief Assembles a randomized list of unvisited spaces adjacent to the space
+       given.
+@param maze Pointer to the current Maze struct.
+@param RQ Pointer to an initialized RandomizedQueue struct which will store the
+       list of unvisited neighbors in randomized order.
+       @param row The row of the space whose neighbors are being checked.
+       @param col The column of the space whose neighbors are being checked.
+*/
+void getNeighbors (Maze *maze, RandomizedQueue *RQ, int row, int col);
+
+/**
+@fn genProbability
+@brief Generates a uniformly distributed random float between 0 and 1 (inclusive). 
+       This float can be compared against thresholds to see if a random event 
+       should occur or not.
+@return A random float between 0 and 1.
+*/
+float genProbability ();
+
+/**
+@fn addNewBranch
+@brief Creates, initializes, and adds a new branch to the queue of branches.
+       Also immediately moves this branch into a new space (from the space of 
+       the branch's parent.)
+@param maze Pointer to the current Maze struct.
+@param queue Pointer to the Queue of branches. Must be already initialized.
+@param branch Pointer to the old branch which will be spawning a new branch.
+@param row The row of the space of the old branch.
+@param col The column of the space of the old branch.
+@param targetRow The row of the space that the new branch will move into.
+@param targetCol The column of the space that the new branch will move into.
+*/
+void addNewBranch (Maze *maze, Queue *queue, Branch *branch, 
+	               int row, int col, int targetRow, int targetCol);
+
+/**
+@fn wallBetween
+@brief Determines if there is a wall between the two given spaces and, if so, 
+where the second space is relative to the first (above, below, etc).
+@param maze Pointer to the current Maze struct.
+@param Arow Row index of the first space.
+@param Acol Column index of the first space.
+@param Brow Row index of the second space.
+@param Bcol Column index of the second space.
+@return 1 if space B is directly above A and a wall is between them.
+		2 if space B is directly below A and a wall is between them.
+		3 if space B is directly to the left of A and a wall is between them.
+		4 if space B is directly to the right of A and a wall is between them.
+		0 otherwise.
+*/
+int wallBetween (Maze *maze, int Arow, int Acol, int Brow, int Bcol);
+
+/**
+@fn removeWallBetween
+@brief Removes a wall existing between two adjacent spaces.
+@param maze Pointer to the current Maze struct.
+@param row Row index of the first space.
+@param col Column index of the first space.
+@param nextRow Row index of the second space.
+@param nextCol Column index of the second space.
+*/
+void removeWallBetween (Maze *maze, int row, int col, int nextRow, int nextCol);
