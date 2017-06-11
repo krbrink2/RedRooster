@@ -19,12 +19,10 @@ class Game{
   void PushGameState(GameState* state);
   void PopGameState();
 
-  sf::Clock clock;
-  sf::RenderWindow window;
-
- private:
-  bool run;
-  std::vector<GameState*> GameStateStack;
+  sf::Clock clock_;
+  sf::RenderWindow window_;
+  bool run_;
+  std::vector<GameState*> gameStateStack_;
   
   
 };

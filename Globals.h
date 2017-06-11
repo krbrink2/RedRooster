@@ -8,7 +8,11 @@
 #define SKIP_TICKS 				(1000/FRAMES_PER_SECOND)
 #define GAME_TITLE 				"Red Rooster"
 
+namespace Glb{
+
 extern Game game;
+
+}
 
 
 

@@ -7,19 +7,22 @@ Game::Game():
 	run(true){
 }
 
+// Copy constructor
 Game::Game(Game& rhs){
-	run = rhs.run;
-	GameStateStack = rhs.GameStateStack;
-	clock = rhs.clock;
+	run_ = rhs.run;
+	gameStateStack_ = rhs.GameStateStack;
+	clock_ = rhs.clock;
 }
 
+// Assignment operator
 Game& Game::operator=(Game& rhs){
-	run = rhs.run;
-	GameStateStack = rhs.GameStateStack;
-	clock = rhs.clock;
+	run_ = rhs.run;
+	gameStateStack_ = rhs.GameStateStack;
+	clock_ = rhs.clock;
 	return *this;
 }
 
+// Destructor
 Game::~Game(){
 	//@TODO
 }
