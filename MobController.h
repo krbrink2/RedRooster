@@ -7,7 +7,6 @@ public:
 	MobController();
 
 	Mob* mob_;
-}
-
+};
 
 #endif

@@ -18,6 +18,8 @@ public:
 	void draw();
 	void step(double x, double y);
 	void reposition(double x, double y);
+	double getX();
+	double getY();
 
 	sf::Texture texture_;
 	sf::Sprite sprite_;
@@ -27,7 +29,7 @@ public:
 	// @TODO does the Mob own the MobController, or vise-versa?
 	MobController* pAttachedMobController_;
 
-}
+};
 
 
 
