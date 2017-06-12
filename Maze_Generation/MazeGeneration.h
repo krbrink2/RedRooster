@@ -93,7 +93,11 @@ typedef struct
 @var terminationLoopChance The probability of a branch that has run out of 
      places to move to create a loop.
 @var minLoopDistance The minimum distance between two spaces for a loop to be
-     created between those spaces.
+     created between those spaces. A negative number if there is no minimum
+     loop distance.
+@var maxLoopDistance The maximum distance between two spaces for a loop to be
+     created between those spaces. A negative number if there is no maximum
+     loop distance. 
 */
 typedef struct 
 {
@@ -107,6 +111,7 @@ typedef struct
 	float terminationLoopChance;
 
 	int minLoopDistance;
+	int maxLoopDistance;
 } MazeTemplate;
 
 /**
@@ -236,3 +241,21 @@ int wallBetween (Maze *maze, int Arow, int Acol, int Brow, int Bcol);
 @param nextCol Column index of the second space.
 */
 void removeWallBetween (Maze *maze, int row, int col, int nextRow, int nextCol);
+
+/**
+@fn tryGenerateLoop
+@brief Checks if a loop should be generated between the two given spaces.
+@param maze Pointer to the current Maze struct.
+@param template The MazeTemplate containing this maze's parameters.
+@param ending True if the branch that will spawn this loop has nowhere to move 
+              and thus is ending. False otherwise. This determines the 
+              likelihood of the loop being generated (typically, it's more 
+              likely that a loop is generated when the branch is ending).
+@param startRow The row index of the first space.
+@param startCol The column index of the first space.
+@param endRow The row index of the second space.
+@param encCol The column index of the second space.
+@return True if a loop was generated. False otherwise.
+*/
+bool tryGenerateLoop (Maze *maze, MazeTemplate template, bool ending,
+					  int startRow, int startCol, int endRow, int endCol)

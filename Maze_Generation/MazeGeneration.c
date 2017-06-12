@@ -56,7 +56,7 @@ void iterateBranch (Maze *maze, MazeTemplate template, Queue *queue,
 		if ( branch->row > 0 && wallBetween(maze, branch->row, branch->col, 
 			                                branch->row - 1, branch->col) )
 		{
-			tryGenerateLoop(maze, template, branch->row, branch->col, 
+			tryGenerateLoop(maze, template, true, branch->row, branch->col, 
 				            branch->row - 1, branch->col);
 		}
 		/* Try forming a loop to the space below. */
@@ -64,14 +64,14 @@ void iterateBranch (Maze *maze, MazeTemplate template, Queue *queue,
 			 wallBetween(maze, template, branch->row, branch->col, 
 			             branch->row - 1, branch->col) )
 		{
-			tryGenerateLoop(maze, template branch->row, branch->col, 
+			tryGenerateLoop(maze, template, true, branch->row, branch->col, 
 				            branch->row + 1, branch->col);
 		}
 		/* Try forming a loop to the space to the left. */
 		if ( branch->col > 0 && wallBetween(maze, branch->row, branch->col, 
 			                                branch->row, branch->col - 1) )
 		{
-			tryGenerateLoop(maze, template, branch->row, branch->col, 
+			tryGenerateLoop(maze, template, true,  branch->row, branch->col, 
 				            branch->row, branch->col - 1);
 		}
 		/* Try forming a loop to the space to the right. */
@@ -79,7 +79,7 @@ void iterateBranch (Maze *maze, MazeTemplate template, Queue *queue,
 			 wallBetween(maze, branch->row, branch->col, 
 			             branch->row, branch->col + 1) )
 		{
-			tryGenerateLoop(maze, template, branch->row, branch->col, 
+			tryGenerateLoop(maze, template, true, branch->row, branch->col, 
 							branch->row, branch->col + 1);
 		}
 		/* Since the branch has ended, it must also be freed. */
@@ -397,3 +397,48 @@ void removeWallBetween (Maze *maze, int row, int col, int nextRow, int nextCol)
 	}
 }
 
+/**
+@fn tryGenerateLoop
+@brief Checks if a loop should be generated between the two given spaces.
+@param maze Pointer to the current Maze struct.
+@param template The MazeTemplate containing this maze's parameters.
+@param ending True if the branch that will spawn this loop has nowhere to move 
+              and thus is ending. False otherwise. This determines the 
+              likelihood of the loop being generated (typically, it's more 
+              likely that a loop is generated when the branch is ending).
+@param startRow The row index of the first space.
+@param startCol The column index of the first space.
+@param endRow The row index of the second space.
+@param encCol The column index of the second space.
+@return True if a loop was generated. False otherwise.
+*/
+bool tryGenerateLoop (Maze *maze, MazeTemplate template, bool ending,
+					  int startRow, int startCol, int endRow, int endCol)
+{
+	float genChance = 0;
+	if ( ending )
+	{
+		genChance = template.terminationLoopChance;
+	}
+	else
+	{
+		genChance = template.universalLoopChance;
+	}
+	/* Check if a loop should be randomly generated. */
+	if ( genProbability() < genChance )
+	{
+		/* Make sure the spaces aren't too far away for a loop to be generated. */
+		int dist = pathLengthBetweenSpaces(maze, template, startRow, startcol,
+										   endRow, endCol);
+		if ( template.maxLoopDistance < 0 || dist <= template.maxLoopDistance )
+		{
+			if ( template.minLoopDistance < 0 || dist >= template.minLoopDistance )
+			{
+				/* Generate a loop by removing the wall between the two spaces. */
+				removeWallBetween(maze, startRow, startCol, endRow, endCol);
+				return true;
+			}
+		}
+	}
+	return false;
+}
