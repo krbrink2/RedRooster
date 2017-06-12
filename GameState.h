@@ -16,7 +16,7 @@ public:
 
 
   GameState();
-  int clear();
+  virtual int clear() = 0;
   
   virtual void takeInput(sf::Event event) = 0;
 

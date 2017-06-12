@@ -51,5 +51,6 @@ int Game::clear()
 		popGameState();
 	}
 	window_.close();
+	run_ = false;
 	return 0;
 }

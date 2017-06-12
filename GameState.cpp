@@ -1,7 +1,6 @@
 #include "GameState.h"
 
 GameState::GameState()
-  :stateType_(StateType::GAMEPPLAY)
 {
   init();
 };
