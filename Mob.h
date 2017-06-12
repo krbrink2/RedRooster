@@ -1,7 +1,6 @@
 #ifndef MOB_H
 #define MOB_H
-#include <vector>
-#include <SFML/Graphics.hpp>
+#include "Globals.h"
 
 
 class MobController;
@@ -9,12 +8,13 @@ class MobController;
 class Mob{
 public:
 	Mob();
-	Mob(char[] fileName);
+	Mob(char* fileName);
 	~Mob();
 
-	void loadTexture(char[] fileName);
-	void clear();
+	int loadTexture(char* fileName);
+	void attachMobController(MobController* mobController);
 
+	void takeInput(sf::Event event);
 	void draw();
 	void step(double x, double y);
 	void reposition(double x, double y);
@@ -30,11 +30,6 @@ public:
 	MobController* pAttachedMobController_;
 
 };
-
-
-
-
-
 
 
 #endif

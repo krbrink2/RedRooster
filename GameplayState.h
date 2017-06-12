@@ -10,9 +10,8 @@ class GameplayState: public GameState
 public:
   GameplayState();
   ~GameplayState();
-  int clear();
 
-  void takeInput(sf::Event event) = 0;
+  void takeInput(sf::Event event);
 
   Map map_;
 

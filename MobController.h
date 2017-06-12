@@ -1,6 +1,7 @@
 #ifndef MOBCONTROLLER_H
 #define MOBCONTROLLER_H
-#include "Mob.h"
+
+class Mob;
 
 class MobController{
 public:

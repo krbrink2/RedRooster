@@ -11,14 +11,14 @@ Game::Game():
 // Copy constructor
 Game::Game(Game& rhs){
 	run_ = rhs.run_;
-	gameStateStack_ = rhs.gameStateStack_;
+	gameStatePtrStack_ = rhs.gameStatePtrStack_;
 	clock_ = rhs.clock_;
 }
 
 // Assignment operator
 Game& Game::operator=(Game& rhs){
 	run_ = rhs.run_;
-	gameStateStack_ = rhs.gameStateStack_;
+	gameStatePtrStack_ = rhs.gameStatePtrStack_;
 	clock_ = rhs.clock_;
 	return *this;
 }
@@ -30,23 +30,23 @@ Game::~Game(){
 
 void Game::pushGameState(GameState* state)
 {
-	gameStateStack_.pushBack(state);
+	gameStatePtrStack_.push_back(state);
 };
 
 void Game::popGameState()
 {
-	delete gameStateStack_.back();
-	gameStateStack_.popBack;
+	delete gameStatePtrStack_.back();
+	gameStatePtrStack_.pop_back();
 };
 
 void Game::takeInput(sf::Event event)
 {
-	gameStateStack_.back().takeInput(event);
+	gameStatePtrStack_.back()->takeInput(event);
 }
 
 int Game::clear()
 {
-	while(!gameStateStack_.empty())
+	while(!gameStatePtrStack_.empty())
 	{
 		popGameState();
 	}

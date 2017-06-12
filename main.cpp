@@ -3,8 +3,7 @@
 #include <time.h>
 #include <iostream>
 #include "Globals.h"
-// #include "Game.h"
-// #include "GameState.h"
+#include "GameplayState.h"
 
 Game Glb::game;
 std::vector< std::vector<bool[2]> > Glb::maze;
@@ -19,8 +18,7 @@ int main(){
   shape.setFillColor(sf::Color::Green);
 
   // Set up game
-  GameplayState* gamestate = new GameplayState();
-  Glb::game.pushGameState(gamestate);
+  Glb::game.pushGameState(new GameplayState());
 
   while (Glb::game.run_){  // Main loop
     // Get events

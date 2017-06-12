@@ -1,8 +1,8 @@
 CC = g++
-CFLAGS = -g -Wall -Werror -Wextra -Wno-unused-parameter -Wno-unused-variable
+CFLAGS = -std=c++11 -g -Wall -Werror -Wextra -Wno-unused-parameter -Wno-unused-variable
 TARGET = RedRooster
-OBJS = Game.o GameState.o
-HEADERS =  Game.h GameState.h
+OBJS = Game.o GameState.o GameplayState.o Map.o Globals.h Mob.o Obstacle.o
+#HEADERS =  Game.h GameState.h
 
 
 default: $(TARGET)
@@ -12,16 +12,19 @@ default: $(TARGET)
 $(TARGET): main.o $(OBJS)
 	$(CC) -o $(TARGET) main.o $(OBJS) $(CFLAGS) -lsfml-graphics -lsfml-window -lsfml-system
 
-main.o: Globals.h
+main.o: Globals.h GameplayState.h
 	$(CC) -c main.cpp $(CFLAGS)
 
 Game.o: GameState.h
 	$(CC) -c Game.cpp $(CFLAGS)
 
+GameplayState.o: GameState.h
+	$(CC) -c GameplayState.cpp $(CFLAGS)
+
 GameState.o: Mob.h
 	$(CC) -c GameState.cpp $(CFLAGS)
 
-Map.o: Mob.h Obstacle.h
+Map.o: Mob.h Obstacle.h PlayerController.h
 	$(CC) -c Map.cpp $(CFLAGS)
 
 Mob.o:

@@ -3,7 +3,7 @@
 #include <vector>
 #include "Globals.h"
 #include "Mob.h"
-#include "Obstable.h"
+#include "Obstacle.h"
 
 
 class Map{
@@ -17,8 +17,8 @@ public:
 	void addMob(Mob& mob);
 	void addMob(Mob* pMob);
 
-	vector<Mob*> mobPtrs_;
-	vector<Obstacle*> obstaclePtrs_;
+	std::vector<Mob*> mobPtrs_;
+	std::vector<Obstacle*> obstaclePtrs_;
 
 	Mob* pPlayerMob_;	// Does NOT live here.
 	

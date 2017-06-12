@@ -1,8 +1,5 @@
 #ifndef GAME_H
 #define GAME_H
-#include <vector>
-#include <SFML/System.hpp>
-#include <SFML/Graphics.hpp>
 #include "GameState.h"	
 
 class Game{
@@ -24,7 +21,7 @@ class Game{
   sf::Clock clock_;
   sf::RenderWindow window_;
   bool run_;
-  std::vector<GameState*> gameStateStack_;
+  std::vector<GameState*> gameStatePtrStack_;
   
   
 };

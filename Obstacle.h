@@ -9,7 +9,7 @@ class Obstacle{
 
 	double bbMin_;
 	double bbMax_;
-}
+};
 
 
 

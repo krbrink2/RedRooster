@@ -2,16 +2,10 @@
 
 GameState::GameState()
 {
-  init();
-};
+  ;
+}
 
-GameState::GameState(StateType type)
-  :stateType_(type)
+GameState::~GameState()
 {
-  init();
-};
-
-int GameState::init()
-{
-  
-};
+  ;
+}

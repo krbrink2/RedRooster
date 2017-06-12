@@ -7,24 +7,10 @@
 class GameState{
 public:
 
-  enum StateType{
-    MAIN_MENU,
-    OPTIONS_MENU,
-    GAMEPLAY,
-    POPUP_MENU
-  };
-
-
   GameState();
-  virtual int clear() = 0;
+  virtual ~GameState();
   
   virtual void takeInput(sf::Event event) = 0;
-
-  StateType stateType_;
-
-private:
-  //virtual int init() = 0;
-
 
 };
 
