@@ -14,8 +14,13 @@ int main(){
   // Ticks to skip
   sf::Time skipTime = sf::milliseconds(SKIP_TICKS);
   
+  // To be removed:
   sf::CircleShape shape(100.f);
   shape.setFillColor(sf::Color::Green);
+
+  // Set up game
+  GameplayState* gamestate = new GameplayState();
+  Glb::game.pushGameState(gamestate);
 
   while (Glb::game.window_.isOpen()){  // Main loop
     // Get events

@@ -16,14 +16,14 @@ public:
 
 
   GameState();
-  GameState(StateType type);
+  int clear();
   
-  void takeInput(sf::Event event);
+  virtual void takeInput(sf::Event event) = 0;
 
   StateType stateType_;
 
 private:
-  int init();
+  //virtual int init() = 0;
 
 
 };

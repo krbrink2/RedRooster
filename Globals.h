@@ -1,7 +1,10 @@
+
 #ifndef GLOBALS_H
 #define GLOBALS_H
 #include <iostream>
 #include <vector>
+#include <SFML/System.hpp>
+#include <SFML/Graphics.hpp>
 #include "Game.h"
 
 

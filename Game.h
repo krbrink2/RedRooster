@@ -11,6 +11,7 @@ class Game{
   Game(Game& rhs);
   Game& operator=(Game& rhs);
   ~Game();
+  int clear();
 
   /*void startClock();
   void pauseClock();
