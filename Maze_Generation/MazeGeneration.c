@@ -261,7 +261,7 @@ float genProbability ()
 	float p = float( rand() );
 	/* Scale the random float down to between 1 and 0. This produces a random
 	   float between 1 and 0 that is uniformly distributed. */
-	p /= RAND_MAX;
+	p /= float(RAND_MAX);
 	return p;
 }
 
@@ -396,3 +396,4 @@ void removeWallBetween (Maze *maze, int row, int col, int nextRow, int nextCol)
 		default:
 	}
 }
+
