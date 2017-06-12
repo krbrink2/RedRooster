@@ -6,7 +6,8 @@
 // #include "Game.h"
 // #include "GameState.h"
 
-Game game;
+Game Glb::game;
+std::vector< std::vector<bool[2]> > Glb::maze;
 
 int main(){
   // Prep for main loop
@@ -16,26 +17,32 @@ int main(){
   sf::CircleShape shape(100.f);
   shape.setFillColor(sf::Color::Green);
 
-  while (game.window.isOpen()){  // Main loop
+  while (Glb::game.window_.isOpen()){  // Main loop
     // Get events
     sf::Event event;
-    while (game.window.pollEvent(event)){
+    while (Glb::game.window_.pollEvent(event)){
       if (event.type == sf::Event::Closed)
-        game.window.close();
+      {
+        Glb::game.window_.close();
+      }
+      else
+      {
+        Glb::game.takeInput(event);
+      }
     }
 
     // Sleep
-    while(game.clock.getElapsedTime() < skipTime){
+    while(Glb::game.clock_.getElapsedTime() < skipTime){
       ; // Skip
     }
-    game.clock.restart();
+    Glb::game.clock_.restart();
 
     // Update game
 
     // Draw game
-    game.window.clear();
-    game.window.draw(shape);
-    game.window.display();
+    Glb::game.window_.clear();
+    Glb::game.window_.draw(shape);
+    Glb::game.window_.display();
 
     }
 

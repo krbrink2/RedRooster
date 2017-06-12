@@ -16,8 +16,9 @@ class Game{
   void pauseClock();
   void resetClock();*/
 
-  void PushGameState(GameState* state);
-  void PopGameState();
+  void pushGameState(GameState* state);
+  void popGameState();
+  void takeInput(sf::Event event);
 
   sf::Clock clock_;
   sf::RenderWindow window_;

@@ -18,8 +18,24 @@ main.o: Globals.h
 Game.o: GameState.h
 	$(CC) -c Game.cpp $(CFLAGS)
 
-GameState.o:
+GameState.o: Mob.h
 	$(CC) -c GameState.cpp $(CFLAGS)
+
+Map.o: Mob.h Obstacle.h
+	$(CC) -c Map.cpp $(CFLAGS)
+
+Mob.o:
+	$(CC) -c Mob.cpp $(CFLAGS)
+
+MobController.o: Mob.h
+	$(CC) -c MobController.cpp $(CFLAGS)
+
+Obstacle.o:
+	$(CC) -c Obstacle.cpp $(CFLAGS)
+
+PlayerController.o: MobController.h
+	$(CC) -c PlayerController.cpp $(CFLAGS)
+
 
 clean:
 	$(RM) $(TARGET) *.o *~

@@ -6,6 +6,8 @@ class MobController{
 public:
 	MobController();
 
+	void setMob(Mob& mob);
+
 	Mob* mob_;
 };
 
