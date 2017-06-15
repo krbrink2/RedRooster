@@ -16,6 +16,7 @@ public:
 	void attachMobController(MobController* mobController);
 
 	void takeInput(sf::Event event);
+	void update();
 	void draw();
 	void step(double x, double y);
 	void reposition(double x, double y);

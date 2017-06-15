@@ -12,7 +12,7 @@ default: $(TARGET)
 $(TARGET): main.o $(OBJS)
 	$(CC) -o $(TARGET) main.o $(OBJS) $(CFLAGS) -lsfml-graphics -lsfml-window -lsfml-system
 
-main.o: Globals.h GameplayState.h
+main.o: main.cpp Globals.h GameplayState.h
 	$(CC) -c main.cpp $(CFLAGS)
 
 Game.o: Game.cpp Game.h GameState.h

@@ -18,6 +18,7 @@ class Game{
   void pushGameState(GameState* state);
   void popGameState();
   void takeInput(sf::Event event);
+  void update();
 
   sf::Clock clock_;
   sf::RenderWindow window_;

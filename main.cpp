@@ -35,6 +35,7 @@ int main(){
     }
 
     // Update Game
+    Glb::game.update();
 
     // Draw game
     Glb::game.window_.clear();

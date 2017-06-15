@@ -12,6 +12,7 @@ public:
   ~GameplayState();
 
   void takeInput(sf::Event event);
+  void update();
 
   Map map_;
 

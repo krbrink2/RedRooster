@@ -11,6 +11,7 @@ public:
   virtual ~GameState();
   
   virtual void takeInput(sf::Event event) = 0;
+  virtual void update() = 0;
 
 };
 

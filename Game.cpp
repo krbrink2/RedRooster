@@ -43,6 +43,11 @@ void Game::takeInput(sf::Event event)
 	gameStatePtrStack_.top()->takeInput(event);
 }
 
+void Game::update()
+{
+	gameStatePtrStack_.top()->update();
+}
+
 int Game::clear()
 {
 	while(!gameStatePtrStack_.empty())
