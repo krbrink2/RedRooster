@@ -1,6 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
-#include "GameState.h"	
+#include "GameState.h"
+#include <stack>
 
 class Game{
  public:
@@ -21,7 +22,7 @@ class Game{
   sf::Clock clock_;
   sf::RenderWindow window_;
   bool run_;
-  std::vector<GameState*> gameStatePtrStack_;
+  std::stack<GameState*> gameStatePtrStack_;
   
   
 };

@@ -5,7 +5,6 @@
 Game::Game():
 	window_(sf::VideoMode(200, 200), GAME_TITLE),//, sf::Style::Fullscreen),
 	run_(true){
-		std::cout << "> Glb::game constructed" << std::endl;
 }
 
 // Copy constructor
@@ -30,18 +29,18 @@ Game::~Game(){
 
 void Game::pushGameState(GameState* state)
 {
-	gameStatePtrStack_.push_back(state);
+	gameStatePtrStack_.push(state);
 };
 
 void Game::popGameState()
 {
-	delete gameStatePtrStack_.back();
-	gameStatePtrStack_.pop_back();
+	delete gameStatePtrStack_.top();
+	gameStatePtrStack_.pop();
 };
 
 void Game::takeInput(sf::Event event)
 {
-	gameStatePtrStack_.back()->takeInput(event);
+	gameStatePtrStack_.top()->takeInput(event);
 }
 
 int Game::clear()

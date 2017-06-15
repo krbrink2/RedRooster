@@ -1,9 +1,9 @@
 #include "GameplayState.h"
+#include "PlayerController.h"
 
 GameplayState::GameplayState()
 : GameState()
 {
-  ;
 }
 
 GameplayState::~GameplayState()
