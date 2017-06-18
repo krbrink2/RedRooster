@@ -13,7 +13,7 @@ public:
   virtual void takeInput(sf::Event event) = 0;
   virtual void act() = 0;
 
-	Mob* mob_; // Does NOT live here.
+	Mob* pMob_; // Does NOT live here.
 };
 
 #endif

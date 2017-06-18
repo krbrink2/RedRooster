@@ -1,4 +1,5 @@
 #include "PlayerController.h"
+#include "Mob.h"
 
 PlayerController::PlayerController()
 {
@@ -26,6 +27,10 @@ void PlayerController::act()
     {
       case sf::Event::KeyPressed:
         std::cout << "Key pressed!" << std::endl;
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        {
+          pMob_->step(-1, 0);
+        }
         break;
       default:
         //std::cout << "Other event!" << std::endl;

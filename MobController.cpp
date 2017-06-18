@@ -2,7 +2,7 @@
 #include "Mob.h"
 
 MobController::MobController()
-: mob_(NULL)
+: pMob_(NULL)
 {
   ;
 }
@@ -14,5 +14,5 @@ MobController::~MobController()
 
 void MobController::setMob(Mob& mob)
 {
-  mob_ = &mob;
+  pMob_ = &mob;
 }

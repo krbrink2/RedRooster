@@ -22,6 +22,11 @@ Mob::Mob(const std::string fileName)
   shape_.setFillColor(sf::Color::Green);
 }
 
+Mob::~Mob()
+{
+  delete pAttachedMobController_;
+}
+
 int Mob::loadTexture(const std::string fileName)
 {
   if(!texture_.loadFromFile(fileName))
@@ -58,13 +63,8 @@ void Mob::draw()
 
 }
 
-
-Mob::~Mob()
-{
-  delete pAttachedMobController_;
-}
-
 void Mob::attachMobController(MobController* ptr)
 {
   pAttachedMobController_ = ptr;
+  pAttachedMobController_->setMob(*this);
 }
