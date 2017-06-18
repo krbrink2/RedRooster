@@ -28,7 +28,7 @@ void PlayerController::act()
         std::cout << "Key pressed!" << std::endl;
         break;
       default:
-        std::cout << "Other event!" << std::endl;
+        //std::cout << "Other event!" << std::endl;
         break;
     }
   }

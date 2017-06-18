@@ -24,6 +24,9 @@ public:
 	double getX();
 	double getY();
 
+	void setX(double x);
+	void setY(double y);
+
 	sf::Texture texture_;
 	sf::Sprite sprite_;
 	double scale_;
