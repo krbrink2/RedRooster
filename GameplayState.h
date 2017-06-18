@@ -13,6 +13,7 @@ public:
 
   void takeInput(sf::Event event);
   void update();
+  void draw();
 
   Map map_;
 

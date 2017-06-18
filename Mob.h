@@ -20,6 +20,7 @@ public:
 	void draw();
 	void step(double x, double y);
 	void reposition(double x, double y);
+
 	double getX();
 	double getY();
 
@@ -28,8 +29,8 @@ public:
 	double scale_;
 	double x_;
 	double y_;
-	// @TODO does the Mob own the MobController, or vise-versa?
-	MobController* pAttachedMobController_;
+	sf::CircleShape shape_;
+	MobController* pAttachedMobController_; // DOES live here
 
 };
 

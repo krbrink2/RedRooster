@@ -12,6 +12,7 @@ public:
   
   virtual void takeInput(sf::Event event) = 0;
   virtual void update() = 0;
+  virtual void draw() = 0;
 
 };
 

@@ -6,8 +6,8 @@
 class Game{
  public:
   Game();
-  Game(Game& rhs);
-  Game& operator=(Game& rhs);
+  // Game(Game& rhs);
+  // Game& operator=(Game& rhs);
   ~Game();
   int clear();
 
@@ -18,13 +18,16 @@ class Game{
   void pushGameState(GameState* state);
   void popGameState();
   void takeInput(sf::Event event);
+  void draw();
+  void drawSprite(sf::Drawable& sprite);
   void update();
+
+  bool isRunning();
 
   sf::Clock clock_;
   sf::RenderWindow window_;
   bool run_;
   std::stack<GameState*> gameStatePtrStack_;
-  
   
 };
 

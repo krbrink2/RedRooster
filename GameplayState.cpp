@@ -20,3 +20,8 @@ void GameplayState::update()
 {
   map_.update();
 }
+
+void GameplayState::draw()
+{
+    map_.draw();
+}

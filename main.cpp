@@ -14,8 +14,7 @@ int main(){
   sf::Time skipTime = sf::milliseconds(SKIP_TICKS);
   
   // To be removed:
-  sf::CircleShape shape(100.f);
-  shape.setFillColor(sf::Color::Green);
+
 
   // Set up game
   Glb::game.pushGameState(new GameplayState());
@@ -27,6 +26,7 @@ int main(){
       if (event.type == sf::Event::Closed)
       {
         Glb::game.clear();
+        return 0;
       }
       else
       {
@@ -37,9 +37,15 @@ int main(){
     // Update Game
     Glb::game.update();
 
+    if(!Glb::game.isRunning())
+    {
+      Glb::game.clear();
+      return 0;
+    }
+
+
     // Draw game
-    Glb::game.window_.clear();
-    Glb::game.window_.draw(shape);
+    Glb::game.draw();
 
     // Sleep
     while(Glb::game.clock_.getElapsedTime() < skipTime){

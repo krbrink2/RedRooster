@@ -17,6 +17,7 @@ public:
 	void addMob(Mob& mob);
 	void addMob(Mob* pMob);
 	void update();
+	void draw();
 
 	std::vector<Mob*> mobPtrs_;
 	std::vector<Obstacle*> obstaclePtrs_;
