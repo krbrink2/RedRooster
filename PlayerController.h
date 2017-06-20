@@ -14,6 +14,8 @@ public:
   void act();
   bool eventQueueEmpty();
 
+
+  double speed_;
   std::queue<sf::Event> eventQueue_;
 
 };

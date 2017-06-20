@@ -2,6 +2,7 @@
 #include "Mob.h"
 
 PlayerController::PlayerController()
+: speed_(5)
 {
 
 }
@@ -18,7 +19,7 @@ bool PlayerController::eventQueueEmpty()
 
 void PlayerController::act()
 {
-  //@TODO
+  //@TODO finish as needed
   while(!eventQueueEmpty())
   {
     sf::Event event = eventQueue_.front();
@@ -27,14 +28,26 @@ void PlayerController::act()
     {
       case sf::Event::KeyPressed:
         std::cout << "Key pressed!" << std::endl;
-        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-        {
-          pMob_->step(-1, 0);
-        }
         break;
       default:
         //std::cout << "Other event!" << std::endl;
         break;
     }
+  }
+  if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+  {
+    pMob_->step(0, -speed_);
+  }
+  if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+  {
+    pMob_->step(-speed_, 0);
+  }
+  if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+  {
+    pMob_->step(0, speed_);
+  }
+  if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+  {
+    pMob_->step(speed_, 0);
   }
 }
