@@ -39,8 +39,18 @@ void Game::popGameState()
 	gameStatePtrStack_.pop();
 };
 
+void Game::endGame()
+{
+	run_ = false;
+}
+
 void Game::takeInput(sf::Event event)
 {
+	if(event == sf::Event::KeyPressed 
+		&& sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+	{
+		endGame();
+	}
 	gameStatePtrStack_.top()->takeInput(event);
 }
 

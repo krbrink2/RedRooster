@@ -17,6 +17,8 @@ class Game{
 
   void pushGameState(GameState* state);
   void popGameState();
+  // Elegently end game
+  void endGame();
   void takeInput(sf::Event event);
   void draw();
   void drawSprite(sf::Drawable& sprite);
