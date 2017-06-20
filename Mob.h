@@ -19,19 +19,14 @@ public:
 	void update();
 	void draw();
 	void step(double x, double y);
-	void reposition(double x, double y);
-
-	double getX();
-	double getY();
-
-	void setX(double x);
-	void setY(double y);
+	void step(sf::Vector2f vector);
+	void setPosition(double x, double y);
+	sf::Vector2f getPosition();
 
 	sf::Texture texture_;
 	sf::Sprite sprite_;
-	double scale_;
-	double x_;
-	double y_;
+	double scale_ = 1;
+	sf::Vector2f position_ = sf::Vector2f(0, 0);
 	MobController* pAttachedMobController_; // DOES live here
 
 };

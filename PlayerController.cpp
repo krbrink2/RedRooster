@@ -2,7 +2,6 @@
 #include "Mob.h"
 
 PlayerController::PlayerController()
-: speed_(10)
 {
 
 }
@@ -36,18 +35,24 @@ void PlayerController::act()
   }
   if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
   {
-    pMob_->step(0, -speed_);
+    momentum_.y -= acceleration_;
+    momentum_.y = std::max(momentum_.y, -maxMomentum_);
   }
   if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
   {
-    pMob_->step(-speed_, 0);
+    momentum_.x -= acceleration_;
+    momentum_.x = std::max(momentum_.x, -maxMomentum_);
   }
   if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
   {
-    pMob_->step(0, speed_);
+    momentum_.y += acceleration_;
+    momentum_.y = std::min(momentum_.y, maxMomentum_);
   }
   if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
   {
-    pMob_->step(speed_, 0);
+    momentum_.x += acceleration_;
+    momentum_.x = std::min(momentum_.x, maxMomentum_);
   }
+  pMob_->step(momentum_);
+  momentum_ *= drag_;
 }

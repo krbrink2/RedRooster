@@ -2,18 +2,10 @@
 #include "PlayerController.h"
 
 Mob::Mob()
-: scale_(1)
-, x_(0)
-, y_(0)
 {
 }
 
 Mob::Mob(const std::string fileName)
-: texture_()
-, sprite_()
-, scale_(1)
-, x_(0)
-, y_(0)
 {
   loadTexture(fileName);
 }
@@ -43,19 +35,28 @@ void Mob::takeInput(sf::Event event)
 void Mob::update()
 {
   pAttachedMobController_->act();
-  sprite_.setPosition(sf::Vector2f(x_, y_));
+  sprite_.setPosition(position_);
 }
 
 void Mob::step(double x, double y)
 {
-  x_ += x;
-  y_ += y;
+  position_ += sf::Vector2f(x, y);
+}
+
+void Mob::step(sf::Vector2f vector)
+{
+  position_ += vector;
 }
 
 void Mob::draw()
 {
   Glb::game.drawSprite(sprite_);
 
+}
+
+sf::Vector2f Mob::getPosition()
+{
+  return position_;
 }
 
 void Mob::attachMobController(MobController* ptr)
