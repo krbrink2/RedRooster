@@ -32,7 +32,6 @@ public:
 	double scale_;
 	double x_;
 	double y_;
-	sf::CircleShape shape_;
 	MobController* pAttachedMobController_; // DOES live here
 
 };

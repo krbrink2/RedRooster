@@ -3,7 +3,7 @@
 
 // Constructor
 Game::Game()
-	: window_(sf::VideoMode(200, 200), GAME_TITLE) //, sf::Style::Fullscreen),
+	: window_(sf::VideoMode(600, 400), GAME_TITLE) //, sf::Style::Fullscreen),
 	, run_(true)
 {
 }
@@ -61,7 +61,7 @@ void Game::update()
 
 void Game::draw()
 {
-	window_.clear();
+	window_.clear(sf::Color(25, 25, 25));
 	gameStatePtrStack_.top()->draw();
 }
 

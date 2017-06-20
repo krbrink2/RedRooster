@@ -2,7 +2,7 @@
 #include "Mob.h"
 
 PlayerController::PlayerController()
-: speed_(5)
+: speed_(10)
 {
 
 }

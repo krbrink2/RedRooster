@@ -5,9 +5,7 @@ Mob::Mob()
 : scale_(1)
 , x_(0)
 , y_(0)
-, shape_(100.f)
 {
-  shape_.setFillColor(sf::Color::Green);
 }
 
 Mob::Mob(const std::string fileName)
@@ -16,10 +14,8 @@ Mob::Mob(const std::string fileName)
 , scale_(1)
 , x_(0)
 , y_(0)
-, shape_(100.f)
 {
   loadTexture(fileName);
-  shape_.setFillColor(sf::Color::Green);
 }
 
 Mob::~Mob()
@@ -58,7 +54,6 @@ void Mob::step(double x, double y)
 
 void Mob::draw()
 {
-  Glb::game.drawSprite(shape_);
   Glb::game.drawSprite(sprite_);
 
 }
