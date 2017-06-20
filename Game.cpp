@@ -46,7 +46,7 @@ void Game::endGame()
 
 void Game::takeInput(sf::Event event)
 {
-	if(event == sf::Event::KeyPressed 
+	if(event.type == sf::Event::KeyPressed 
 		&& sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 	{
 		endGame();
