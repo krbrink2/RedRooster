@@ -27,10 +27,8 @@ void PlayerController::act()
     switch(event.type)
     {
       case sf::Event::KeyPressed:
-        std::cout << "Key pressed!" << std::endl;
         break;
       default:
-        //std::cout << "Other event!" << std::endl;
         break;
     }
   }

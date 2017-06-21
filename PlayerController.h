@@ -14,9 +14,7 @@ public:
   void act();
   bool eventQueueEmpty();
 
-
-  double speed_ = 10; //@TODO unused
-  double acceleration_ = 3;
+  double acceleration_ = 4.5;
   sf::Vector2f momentum_;
   float drag_ = .7; 
   std::queue<sf::Event> eventQueue_;

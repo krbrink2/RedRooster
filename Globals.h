@@ -13,6 +13,7 @@
 #define GAME_TITLE          "Red Rooster"
 #define LARGE_ROOSTER       "assets/rooster.png"
 #define ICON                "assets/icon.png"
+#define OBSTACLE            "assets/brick.jpg"
 
 namespace Glb{
 

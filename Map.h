@@ -14,8 +14,10 @@ public:
 	~Map();
 	int clear();
 
+	void addDefaults();
 	void addMob(Mob& mob);
 	void addMob(Mob* pMob);
+	void addObstacle(Obstacle* pObstacle);
 	void update();
 	void draw();
 

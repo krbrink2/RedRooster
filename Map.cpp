@@ -8,11 +8,23 @@ Map::Map()
   pPlayerMob_ = new Mob(icon);
   addMob(pPlayerMob_);
   pPlayerMob_->attachMobController(new PlayerController()); 
+  addDefaults();
 }
 
 Map::~Map()
 {
   clear();
+}
+
+void Map::addDefaults()
+{
+  Obstacle* pObstacle;
+  pObstacle = new Obstacle(OBSTACLE);
+  pObstacle->setPosition(10, 10);
+  addObstacle(pObstacle);
+  pObstacle = new Obstacle(OBSTACLE);
+  pObstacle->setPosition(350, 200);
+  addObstacle(pObstacle);
 }
 
 void Map::addMob(Mob& mob)
@@ -25,6 +37,11 @@ void Map::addMob(Mob& mob)
 void Map::addMob(Mob* pMob)
 {
   mobPtrs_.push_back(pMob);
+}
+
+void Map::addObstacle(Obstacle* pObstacle)
+{
+  obstaclePtrs_.push_back(pObstacle);
 }
 
 void Map::update()

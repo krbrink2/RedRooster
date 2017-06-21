@@ -1,12 +1,12 @@
 #ifndef MOB_H
 #define MOB_H
 #include "Globals.h"
+#include "Boundable.h"
 // Do NOT include MobController.h
-
 
 class MobController;
 
-class Mob{
+class Mob: public Boundable{
 public:
 	Mob();
 	Mob(const std::string fileName);
@@ -21,6 +21,7 @@ public:
 	void step(double x, double y);
 	void step(sf::Vector2f vector);
 	void setPosition(double x, double y);
+	void setPosition(sf::Vector2f pos);
 	sf::Vector2f getPosition();
 
 	sf::Texture texture_;
