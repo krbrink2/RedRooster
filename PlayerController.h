@@ -18,8 +18,7 @@ public:
   double speed_ = 10; //@TODO unused
   double acceleration_ = 3;
   sf::Vector2f momentum_;
-  float drag_ = .7;
-  float maxMomentum_ = 30; //@TODO unused
+  float drag_ = .7; 
   std::queue<sf::Event> eventQueue_;
 
 };

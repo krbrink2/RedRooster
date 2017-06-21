@@ -1,5 +1,6 @@
 #include "PlayerController.h"
 #include "Mob.h"
+#include <cmath>
 
 PlayerController::PlayerController()
 {
@@ -33,26 +34,40 @@ void PlayerController::act()
         break;
     }
   }
+  float x , y;
+  x = y = 0;
   if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
   {
-    momentum_.y -= acceleration_;
-    momentum_.y = std::max(momentum_.y, -maxMomentum_);
+    y += -1;
   }
   if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
   {
-    momentum_.x -= acceleration_;
-    momentum_.x = std::max(momentum_.x, -maxMomentum_);
+    x += -1;
   }
   if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
   {
-    momentum_.y += acceleration_;
-    momentum_.y = std::min(momentum_.y, maxMomentum_);
+    y += 1;
   }
   if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
   {
-    momentum_.x += acceleration_;
-    momentum_.x = std::min(momentum_.x, maxMomentum_);
+    x += 1;
   }
+  // Normalize vector
+  float normalizer = std::sqrt((x*x) + (y*y));
+  if(normalizer > 0)
+  {
+    normalizer = 1.0/normalizer;
+  }
+  else
+  {
+    normalizer = 0;
+  }
+  x *= normalizer*acceleration_;
+  y *= normalizer*acceleration_;
+
+  momentum_.x += x;
+  momentum_.y += y;
+
   pMob_->step(momentum_);
   momentum_ *= drag_;
 }
