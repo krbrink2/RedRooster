@@ -6,8 +6,11 @@ Map::Map()
 {
   std::string icon = ICON;
   pPlayerMob_ = new Mob(icon);
-  addMob(pPlayerMob_);
-  pPlayerMob_->attachMobController(new PlayerController()); 
+
+  pPlayerController* PlayerController();
+  pPlayerController->pMap = this;
+  pPlayerMob_->attachMobController(PlayerController); 
+  addMobPtr(pPlayerMob_);
   addDefaults();
 }
 
@@ -27,15 +30,20 @@ void Map::addDefaults()
   addObstacle(pObstacle);
 }
 
-void Map::addMob(Mob& mob)
-{
-  Mob* pMyMob  = new Mob();
-  *pMyMob = mob;
-  mobPtrs_.push_back(pMyMob);
-}
+// void Map::addMob(Mob& mob)
+// {
+//   Mob* pMyMob  = new Mob();
+//   *pMyMob = mob;
+//   mobPtrs_.push_back(pMyMob);
+// }
 
-void Map::addMob(Mob* pMob)
+void Map::addMobPtr(Mob* pMob)
 {
+  pMob->pMap_ = this;
+  if(NULL == pMob->pAttachedMobController_)
+  {
+    //@TODO add some default controller. //@RESUME
+  }
   mobPtrs_.push_back(pMob);
 }
 

@@ -3,6 +3,7 @@
 #include "Globals.h"
 
 class Mob;
+class Map;
 
 class MobController{
 public:
@@ -14,6 +15,7 @@ public:
   virtual void act() = 0;
 
 	Mob* pMob_; // Does NOT live here.
+  Map* pMap_; // Does NOT live here.
 };
 
 #endif

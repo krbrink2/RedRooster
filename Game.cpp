@@ -61,7 +61,7 @@ void Game::update()
 
 void Game::draw()
 {
-	window_.clear(sf::Color(25, 25, 25));
+	window_.clear(sf::Color(200, 200, 200));
 	gameStatePtrStack_.top()->draw();
 }
 
