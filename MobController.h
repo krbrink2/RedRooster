@@ -1,9 +1,9 @@
 #ifndef MOBCONTROLLER_H
 #define MOBCONTROLLER_H
 #include "Globals.h"
+#include "Map.h"
 
 class Mob;
-class Map;
 
 class MobController{
 public:

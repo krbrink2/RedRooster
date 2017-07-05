@@ -33,6 +33,7 @@ void Obstacle::setPosition(sf::Vector2f pos)
 {
   position_ = pos;
   sprite_.setPosition(position_);
+  
 }
 
 void Obstacle::setPosition(float x, float y)

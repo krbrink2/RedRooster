@@ -4,7 +4,8 @@
 #include "Globals.h"
 #include "Mob.h"
 #include "Obstacle.h"
-#include "PlayerController.h"
+
+class PlayerController;
 
 class Map{
 public:
@@ -20,6 +21,8 @@ public:
 	void addObstacle(Obstacle* pObstacle);
 	void update();
 	void draw();
+
+	bool checkForCollision(sf::Vector2f step, Boundable& b) const;
 
 	std::vector<Mob*> mobPtrs_;
 	std::vector<Obstacle*> obstaclePtrs_;

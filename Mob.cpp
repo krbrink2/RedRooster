@@ -1,4 +1,5 @@
 #include "Mob.h"
+#include "MobController.h"
 #include "PlayerController.h"
 
 Mob::Mob()
@@ -75,6 +76,10 @@ sf::Vector2f Mob::getPosition()
 
 void Mob::attachMobController(MobController* ptr)
 {
+  if(NULL != pAttachedMobController_)
+  {
+    delete pAttachedMobController_;
+  }
   pAttachedMobController_ = ptr;
   pAttachedMobController_->setMob(*this);
 }

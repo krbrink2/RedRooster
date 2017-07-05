@@ -13,8 +13,8 @@ public:
     
   };
 
-  bool intersect(const Boundable& other) const;
-  bool intersect(const sf::Vector2f step, const Boundable& other) const;
+  bool checkForIntersection(const Boundable& other) const;
+  bool checkForIntersection(const sf::Vector2f step, const Boundable& other) const;
 
   BoundingBox boundingBox_;
 

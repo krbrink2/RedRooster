@@ -32,6 +32,7 @@ void PlayerController::act()
         break;
     }
   }
+  // Create velocity vector
   float x , y;
   x = y = 0;
   if(sf::Keyboard::isKeyPressed(sf::Keyboard::W))
@@ -65,6 +66,12 @@ void PlayerController::act()
 
   momentum_.x += x;
   momentum_.y += y;
+
+  // Check for collision
+  if(Gbl::pMap->checkForCollision(momentum_, *pMob_))
+  {
+    momentum_ = sf::Vector2f(0, 0);
+  }
 
   pMob_->step(momentum_);
   momentum_ *= drag_;
