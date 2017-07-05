@@ -15,7 +15,7 @@ Obstacle::Obstacle(const std::string fileName)
 
 void Obstacle::draw()
 {
-  Glb::game.drawSprite(sprite_);
+  Gbl::game.drawSprite(sprite_);
 }
 
 int Obstacle::loadTexture(const std::string fileName)

@@ -14,44 +14,44 @@ int main(){
 
 
   // Set up game
-  Glb::game.pushGameState(new GameplayState());
+  Gbl::game.pushGameState(new GameplayState());
 
-  while (Glb::game.run_){  // Main loop
+  while (Gbl::game.run_){  // Main loop
     // Get events
     sf::Event event;
-    while (Glb::game.window_.pollEvent(event)){
+    while (Gbl::game.window_.pollEvent(event)){
       if (event.type == sf::Event::Closed)
       {
-        Glb::game.clear();
+        Gbl::game.clear();
         return 0;
       }
       else
       {
-        Glb::game.takeInput(event);
+        Gbl::game.takeInput(event);
       }
     }
 
     // Update Game
-    Glb::game.update();
+    Gbl::game.update();
 
-    if(!Glb::game.isRunning())
+    if(!Gbl::game.isRunning())
     {
-      Glb::game.clear();
+      Gbl::game.clear();
       return 0;
     }
 
 
     // Draw game
-    Glb::game.draw();
+    Gbl::game.draw();
 
     // Sleep
-    while(Glb::game.clock_.getElapsedTime() < skipTime){
+    while(Gbl::game.clock_.getElapsedTime() < skipTime){
       ; // Skip
     }
-    Glb::game.clock_.restart();
+    Gbl::game.clock_.restart();
 
     // Display game
-    Glb::game.window_.display();
+    Gbl::game.window_.display();
 
     }
 

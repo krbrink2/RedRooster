@@ -1,7 +1,7 @@
 CC = g++
 CFLAGS = -std=c++11 -g -Wall -Werror -Wextra -Wno-unused-parameter -Wno-unused-variable
 TARGET = RedRooster
-OBJS = Boundable.o Game.o GameState.o GameplayState.o Map.o Globals.h Mob.o MobController.o Obstacle.o PlayerController.o
+OBJS = Boundable.o Game.o GameState.o GameplayState.o Globals.o Map.o Globals.h Mob.o MobController.o Obstacle.o PlayerController.o
 #HEADERS =  Game.h GameState.h
 
 
@@ -18,7 +18,7 @@ main.o: main.cpp Globals.h GameplayState.h
 Boundable.o: Boundable.cpp Boundable.h Globals.h
 	$(CC) -c Boundable.cpp $(CFLAGS)
 
-Game.o: Game.cpp Game.h GameState.h  Globals.h
+Game.o: Game.cpp Game.h GameState.h Globals.h
 	$(CC) -c Game.cpp $(CFLAGS)
 
 GameplayState.o: GameplayState.cpp GameplayState.h GameState.h Map.h Globals.h

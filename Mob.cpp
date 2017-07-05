@@ -65,7 +65,7 @@ void Mob::setPosition(sf::Vector2f pos)
 
 void Mob::draw()
 {
-  Glb::game.drawSprite(sprite_);
+  Gbl::game.drawSprite(sprite_);
 }
 
 sf::Vector2f Mob::getPosition()
