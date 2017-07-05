@@ -2,14 +2,15 @@
 #include "PlayerController.h"
 
 Map::Map()
-//: pPlayerMob_(NULL)
 {
+  assert(NULL == Gbl::pMap);
+  Gbl::pMap = this;
+
   std::string icon = ICON;
   pPlayerMob_ = new Mob(icon);
 
-  pPlayerController* PlayerController();
-  pPlayerController->pMap = this;
-  pPlayerMob_->attachMobController(PlayerController); 
+  pPlayerController_ = new PlayerController();
+  pPlayerMob_->attachMobController(pPlayerController_);
   addMobPtr(pPlayerMob_);
   addDefaults();
 }
@@ -17,6 +18,7 @@ Map::Map()
 Map::~Map()
 {
   clear();
+  Gbl::pMap = NULL;
 }
 
 void Map::addDefaults()
@@ -39,7 +41,6 @@ void Map::addDefaults()
 
 void Map::addMobPtr(Mob* pMob)
 {
-  pMob->pMap_ = this;
   if(NULL == pMob->pAttachedMobController_)
   {
     //@TODO add some default controller. //@RESUME

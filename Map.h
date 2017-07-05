@@ -4,7 +4,7 @@
 #include "Globals.h"
 #include "Mob.h"
 #include "Obstacle.h"
-
+#include "PlayerController.h"
 
 class Map{
 public:
@@ -25,6 +25,7 @@ public:
 	std::vector<Obstacle*> obstaclePtrs_;
 
 	Mob* pPlayerMob_;	// Does NOT live here.
+	PlayerController* pPlayerController_; // Does NOT live here
 	
 
 private:

@@ -15,31 +15,34 @@ $(TARGET): main.o $(OBJS)
 main.o: main.cpp Globals.h GameplayState.h
 	$(CC) -c main.cpp $(CFLAGS)
 
-Boundable.o: Boundable.cpp Boundable.h
+Boundable.o: Boundable.cpp Boundable.h Globals.h
 	$(CC) -c Boundable.cpp $(CFLAGS)
 
-Game.o: Game.cpp Game.h GameState.h
+Game.o: Game.cpp Game.h GameState.h  Globals.h
 	$(CC) -c Game.cpp $(CFLAGS)
 
-GameplayState.o: GameplayState.cpp GameplayState.h GameState.h Map.h 
+GameplayState.o: GameplayState.cpp GameplayState.h GameState.h Map.h Globals.h
 	$(CC) -c GameplayState.cpp $(CFLAGS)
 
-GameState.o: GameState.cpp GameState.h Mob.h
+GameState.o: GameState.cpp GameState.h Mob.h Globals.h
 	$(CC) -c GameState.cpp $(CFLAGS)
 
-Map.o: Map.cpp Map.h Mob.h Obstacle.h PlayerController.h
+Globals.o: Globals.cpp Globals.h
+	$(CC) -c Globals.cpp $(CFLAGS)
+
+Map.o: Map.cpp Map.h Mob.h Obstacle.h PlayerController.h Globals.h
 	$(CC) -c Map.cpp $(CFLAGS)
 
-Mob.o: Mob.cpp Mob.h Boundable.h
+Mob.o: Mob.cpp Mob.h Boundable.h Globals.h
 	$(CC) -c Mob.cpp $(CFLAGS)
 
-MobController.o: MobController.cpp MobController.h Mob.h
+MobController.o: MobController.cpp MobController.h Mob.h Globals.h
 	$(CC) -c MobController.cpp $(CFLAGS)
 
-Obstacle.o: Obstacle.cpp Obstacle.h Boundable.h
+Obstacle.o: Obstacle.cpp Obstacle.h Boundable.h Globals.h
 	$(CC) -c Obstacle.cpp $(CFLAGS)
 
-PlayerController.o: PlayerController.cpp PlayerController.h MobController.h
+PlayerController.o: PlayerController.cpp PlayerController.h MobController.h Globals.h
 	$(CC) -c PlayerController.cpp $(CFLAGS)
 
 

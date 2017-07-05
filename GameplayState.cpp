@@ -3,6 +3,7 @@
 
 GameplayState::GameplayState()
 : GameState()
+, map_()
 {
 }
 

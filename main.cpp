@@ -5,9 +5,6 @@
 #include "Globals.h"
 #include "GameplayState.h"
 
-Game Glb::game;
-std::vector< std::vector<bool[2]> > Glb::maze;
-
 int main(){
   // Prep for main loop
   // Ticks to skip

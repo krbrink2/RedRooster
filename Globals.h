@@ -3,6 +3,7 @@
 #define GLOBALS_H
 #include <iostream>
 #include <vector>
+#include <cassert>
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include "Game.h"
@@ -15,10 +16,13 @@
 #define ICON                "assets/icon.png"
 #define OBSTACLE            "assets/brick.jpg"
 
-namespace Glb{
+// Forward declarations
+class Map;
 
+namespace Glb{
   extern Game game;
   extern std::vector< std::vector<bool[2]> > maze;
+  extern Map* pMap;
 
 }
 
