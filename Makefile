@@ -15,7 +15,7 @@ CXX           = g++
 DEFINES       = -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -m64 -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -m64 -pipe -std=c++11 -g -Wall -Werror -Wextra -Wno-unused-parameter -Wno-unused-variable -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I. -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64
+INCPATH       = -I. -Isrc -Iinc -isystem /usr/include/x86_64-linux-gnu/qt5 -isystem /usr/include/x86_64-linux-gnu/qt5/QtGui -isystem /usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++-64
 QMAKE         = /usr/lib/x86_64-linux-gnu/qt5/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -33,10 +33,10 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = RedRooster1.0.0
-DISTDIR = /home/kyle/Documents/RedRooster/.tmp/RedRooster1.0.0
+DISTDIR = /home/kyle/Documents/RedRooster/obj/RedRooster1.0.0
 LINK          = g++
 LFLAGS        = -m64
-LIBS          = $(SUBLIBS) -L/usr/X11R6/lib64 -lQt5Gui -lQt5Core -lGL -lpthread 
+LIBS          = $(SUBLIBS) -L/usr/X11R6/lib64 -lsfml-graphics -lsfml-window -lsfml-system -lQt5Gui -lQt5Core -lGL -lpthread 
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -44,32 +44,32 @@ STRIP         = strip
 
 ####### Output directory
 
-OBJECTS_DIR   = ./
+OBJECTS_DIR   = obj/
 
 ####### Files
 
-SOURCES       = Boundable.cpp \
-		Game.cpp \
-		GameplayState.cpp \
-		GameState.cpp \
-		Globals.cpp \
-		main.cpp \
-		Map.cpp \
-		MobController.cpp \
-		Mob.cpp \
-		Obstacle.cpp \
-		PlayerController.cpp 
-OBJECTS       = Boundable.o \
-		Game.o \
-		GameplayState.o \
-		GameState.o \
-		Globals.o \
-		main.o \
-		Map.o \
-		MobController.o \
-		Mob.o \
-		Obstacle.o \
-		PlayerController.o
+SOURCES       = src/Boundable.cpp \
+		src/Game.cpp \
+		src/GameplayState.cpp \
+		src/GameState.cpp \
+		src/Globals.cpp \
+		src/main.cpp \
+		src/Map.cpp \
+		src/Mob.cpp \
+		src/MobController.cpp \
+		src/Obstacle.cpp \
+		src/PlayerController.cpp 
+OBJECTS       = obj/Boundable.o \
+		obj/Game.o \
+		obj/GameplayState.o \
+		obj/GameState.o \
+		obj/Globals.o \
+		obj/main.o \
+		obj/Map.o \
+		obj/Mob.o \
+		obj/MobController.o \
+		obj/Obstacle.o \
+		obj/PlayerController.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -129,26 +129,26 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		RedRooster.pro Boundable.h \
-		Game.h \
-		GameplayState.h \
-		GameState.h \
-		Globals.h \
-		Map.h \
-		MobController.h \
-		Mob.h \
-		Obstacle.h \
-		PlayerController.h Boundable.cpp \
-		Game.cpp \
-		GameplayState.cpp \
-		GameState.cpp \
-		Globals.cpp \
-		main.cpp \
-		Map.cpp \
-		MobController.cpp \
-		Mob.cpp \
-		Obstacle.cpp \
-		PlayerController.cpp
+		RedRooster.pro inc/Boundable.h \
+		inc/Game.h \
+		inc/GameplayState.h \
+		inc/GameState.h \
+		inc/Globals.h \
+		inc/Map.h \
+		inc/Mob.h \
+		inc/MobController.h \
+		inc/Obstacle.h \
+		inc/PlayerController.h src/Boundable.cpp \
+		src/Game.cpp \
+		src/GameplayState.cpp \
+		src/GameState.cpp \
+		src/Globals.cpp \
+		src/main.cpp \
+		src/Map.cpp \
+		src/Mob.cpp \
+		src/MobController.cpp \
+		src/Obstacle.cpp \
+		src/PlayerController.cpp
 QMAKE_TARGET  = RedRooster
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = RedRooster
@@ -318,8 +318,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents Boundable.h Game.h GameplayState.h GameState.h Globals.h Map.h MobController.h Mob.h Obstacle.h PlayerController.h $(DISTDIR)/
-	$(COPY_FILE) --parents Boundable.cpp Game.cpp GameplayState.cpp GameState.cpp Globals.cpp main.cpp Map.cpp MobController.cpp Mob.cpp Obstacle.cpp PlayerController.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents inc/Boundable.h inc/Game.h inc/GameplayState.h inc/GameState.h inc/Globals.h inc/Map.h inc/Mob.h inc/MobController.h inc/Obstacle.h inc/PlayerController.h $(DISTDIR)/
+	$(COPY_FILE) --parents src/Boundable.cpp src/Game.cpp src/GameplayState.cpp src/GameState.cpp src/Globals.cpp src/main.cpp src/Map.cpp src/Mob.cpp src/MobController.cpp src/Obstacle.cpp src/PlayerController.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -356,100 +356,100 @@ compiler_clean:
 
 ####### Compile
 
-Boundable.o: Boundable.cpp Boundable.h \
-		Globals.h \
-		Game.h \
-		GameState.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Boundable.o Boundable.cpp
+obj/Boundable.o: src/Boundable.cpp inc/Boundable.h \
+		inc/Globals.h \
+		inc/Game.h \
+		inc/GameState.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/Boundable.o src/Boundable.cpp
 
-Game.o: Game.cpp Game.h \
-		GameState.h \
-		Globals.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Game.o Game.cpp
+obj/Game.o: src/Game.cpp inc/Game.h \
+		inc/GameState.h \
+		inc/Globals.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/Game.o src/Game.cpp
 
-GameplayState.o: GameplayState.cpp GameplayState.h \
-		Globals.h \
-		Game.h \
-		GameState.h \
-		Map.h \
-		Mob.h \
-		Boundable.h \
-		Obstacle.h \
-		PlayerController.h \
-		MobController.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o GameplayState.o GameplayState.cpp
+obj/GameplayState.o: src/GameplayState.cpp inc/GameplayState.h \
+		inc/Globals.h \
+		inc/Game.h \
+		inc/GameState.h \
+		inc/Map.h \
+		inc/Mob.h \
+		inc/Boundable.h \
+		inc/Obstacle.h \
+		inc/PlayerController.h \
+		inc/MobController.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/GameplayState.o src/GameplayState.cpp
 
-GameState.o: GameState.cpp GameState.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o GameState.o GameState.cpp
+obj/GameState.o: src/GameState.cpp inc/GameState.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/GameState.o src/GameState.cpp
 
-Globals.o: Globals.cpp Globals.h \
-		Game.h \
-		GameState.h \
-		Map.h \
-		Mob.h \
-		Boundable.h \
-		Obstacle.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Globals.o Globals.cpp
+obj/Globals.o: src/Globals.cpp inc/Globals.h \
+		inc/Game.h \
+		inc/GameState.h \
+		inc/Map.h \
+		inc/Mob.h \
+		inc/Boundable.h \
+		inc/Obstacle.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/Globals.o src/Globals.cpp
 
-main.o: main.cpp Globals.h \
-		Game.h \
-		GameState.h \
-		GameplayState.h \
-		Map.h \
-		Mob.h \
-		Boundable.h \
-		Obstacle.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
+obj/main.o: src/main.cpp inc/Globals.h \
+		inc/Game.h \
+		inc/GameState.h \
+		inc/GameplayState.h \
+		inc/Map.h \
+		inc/Mob.h \
+		inc/Boundable.h \
+		inc/Obstacle.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/main.o src/main.cpp
 
-Map.o: Map.cpp Map.h \
-		Globals.h \
-		Game.h \
-		GameState.h \
-		Mob.h \
-		Boundable.h \
-		Obstacle.h \
-		PlayerController.h \
-		MobController.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Map.o Map.cpp
+obj/Map.o: src/Map.cpp inc/Map.h \
+		inc/Globals.h \
+		inc/Game.h \
+		inc/GameState.h \
+		inc/Mob.h \
+		inc/Boundable.h \
+		inc/Obstacle.h \
+		inc/PlayerController.h \
+		inc/MobController.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/Map.o src/Map.cpp
 
-MobController.o: MobController.cpp MobController.h \
-		Globals.h \
-		Game.h \
-		GameState.h \
-		Map.h \
-		Mob.h \
-		Boundable.h \
-		Obstacle.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MobController.o MobController.cpp
+obj/Mob.o: src/Mob.cpp inc/Mob.h \
+		inc/Globals.h \
+		inc/Game.h \
+		inc/GameState.h \
+		inc/Boundable.h \
+		inc/MobController.h \
+		inc/Map.h \
+		inc/Obstacle.h \
+		inc/PlayerController.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/Mob.o src/Mob.cpp
 
-Mob.o: Mob.cpp Mob.h \
-		Globals.h \
-		Game.h \
-		GameState.h \
-		Boundable.h \
-		MobController.h \
-		Map.h \
-		Obstacle.h \
-		PlayerController.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Mob.o Mob.cpp
+obj/MobController.o: src/MobController.cpp inc/MobController.h \
+		inc/Globals.h \
+		inc/Game.h \
+		inc/GameState.h \
+		inc/Map.h \
+		inc/Mob.h \
+		inc/Boundable.h \
+		inc/Obstacle.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/MobController.o src/MobController.cpp
 
-Obstacle.o: Obstacle.cpp Obstacle.h \
-		Globals.h \
-		Game.h \
-		GameState.h \
-		Boundable.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Obstacle.o Obstacle.cpp
+obj/Obstacle.o: src/Obstacle.cpp inc/Obstacle.h \
+		inc/Globals.h \
+		inc/Game.h \
+		inc/GameState.h \
+		inc/Boundable.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/Obstacle.o src/Obstacle.cpp
 
-PlayerController.o: PlayerController.cpp PlayerController.h \
-		Globals.h \
-		Game.h \
-		GameState.h \
-		MobController.h \
-		Map.h \
-		Mob.h \
-		Boundable.h \
-		Obstacle.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o PlayerController.o PlayerController.cpp
+obj/PlayerController.o: src/PlayerController.cpp inc/PlayerController.h \
+		inc/Globals.h \
+		inc/Game.h \
+		inc/GameState.h \
+		inc/MobController.h \
+		inc/Map.h \
+		inc/Mob.h \
+		inc/Boundable.h \
+		inc/Obstacle.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/PlayerController.o src/PlayerController.cpp
 
 ####### Install
 
