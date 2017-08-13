@@ -51,6 +51,11 @@ void Mob::step(double x, double y)
 
 void Mob::step(sf::Vector2f vector)
 {
+  if(Gbl::pMap->checkForCollision(vector, *this))
+  {
+    std::cout << "Mob::step moving into another boundable! vector: " << vector.x << vector.y << std::endl;
+    return;
+  }
   position_ += vector;
   boundingBox_.min_ += vector;
   boundingBox_.max_ += vector;
@@ -65,8 +70,7 @@ void Mob::setPosition(sf::Vector2f pos)
 {
   position_ = pos;
   boundingBox_.min_ = pos;
-  boundingBox_.max_ = pos + sf::Vector2f(pos.x + width_,
-                                         pos.y + height_);
+  boundingBox_.max_ = pos + sf::Vector2f(width_, height_);
 }
 void Mob::setWidth(double w)
 {

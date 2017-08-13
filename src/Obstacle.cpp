@@ -36,8 +36,7 @@ void Obstacle::setPosition(sf::Vector2f pos)
   position_ = pos;
   sprite_.setPosition(position_);
   boundingBox_.min_ = pos;
-  boundingBox_.max_ = pos + sf::Vector2f(pos.x + width_,
-                                         pos.y + height_);
+  boundingBox_.max_ = pos + sf::Vector2f(width_, height_);
   
 }
 

@@ -16,15 +16,18 @@ bool Boundable::checkForIntersection(const Boundable& other) const
          boundingBox_.min_.y < other.boundingBox_.max_.y;
 }
 
-// Return true if this boundable will collide with other after taking step.
+// Return true if taking step will cause this boundable to collide with other.
 bool Boundable::checkForIntersection(const sf::Vector2f step, const Boundable& other) const
 {
   if(this == &other)
   {
     return false;
   }
-  sf::Vector2f myMin = boundingBox_.min_ + step;
-  sf::Vector2f myMax = boundingBox_.max_ + step;
+  
+  sf::Vector2f myMin, myMax;
+  myMin = boundingBox_.min_ + step;
+  myMax = boundingBox_.max_ + step;
+
   return myMin.x < other.boundingBox_.max_.x &&
          myMax.x > other.boundingBox_.min_.x &&
          myMax.y > other.boundingBox_.min_.y &&

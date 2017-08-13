@@ -86,7 +86,7 @@ bool Map::checkForCollision(sf::Vector2f step, Boundable& b) const
     {
       continue;
     }
-    if((*it)->checkForIntersection(step, b))
+    if(b.checkForIntersection(step, **it))
     {
       return true;
     }
@@ -99,7 +99,7 @@ bool Map::checkForCollision(sf::Vector2f step, Boundable& b) const
     {
       continue;
     }
-    if((*it)->checkForIntersection(step, b))
+    if(b.checkForIntersection(step, **it))
     {
       return true;
     }

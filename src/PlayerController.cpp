@@ -22,6 +22,10 @@ bool PlayerController::eventQueueEmpty()
 // Process all events in event queue, then apply them to player mob.
 void PlayerController::act()
 {
+  if(Gbl::pMap->checkForCollision(momentum_, *pMob_) )
+  {
+    std::cout << "PlayerController::act starting with mob already inside of another boundable!" << std::endl;
+  }
   //@TODO finish as needed
   while(!eventQueueEmpty())
   {
