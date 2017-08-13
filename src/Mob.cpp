@@ -4,15 +4,17 @@
 
 Mob::Mob()
 {
-  boundingBox_.min_ = sf::Vector2f(-100, -100);
-  boundingBox_.max_ = sf::Vector2f(100, 100);
+  boundingBox_.min_ = sf::Vector2f(position_.x, position_.y);
+  boundingBox_.max_ = sf::Vector2f(position_.x + width_,
+                                   position_.y + height_);
 }
 
 Mob::Mob(const std::string fileName)
 {
   loadTexture(fileName);
-  boundingBox_.min_ = sf::Vector2f(-100, -100);
-  boundingBox_.max_ = sf::Vector2f(100, 100);
+  boundingBox_.min_ = sf::Vector2f(position_.x, position_.y);
+  boundingBox_.max_ = sf::Vector2f(position_.x + width_,
+                                   position_.y + height_);
 }
 
 Mob::~Mob()
@@ -49,9 +51,9 @@ void Mob::step(double x, double y)
 
 void Mob::step(sf::Vector2f vector)
 {
-  // Check for collision  
-  //@RESUME
   position_ += vector;
+  boundingBox_.min_ += vector;
+  boundingBox_.max_ += vector;
 }
 
 void Mob::setPosition(double x, double y)
@@ -62,6 +64,18 @@ void Mob::setPosition(double x, double y)
 void Mob::setPosition(sf::Vector2f pos)
 {
   position_ = pos;
+  boundingBox_.min_ = pos;
+  boundingBox_.max_ = pos + sf::Vector2f(pos.x + width_,
+                                         pos.y + height_);
+}
+void Mob::setWidth(double w)
+{
+  width_ = w;
+}
+
+void Mob::setHeight(double h)
+{
+  height_ = h;
 }
 
 void Mob::draw()

@@ -1,13 +1,13 @@
 #ifndef GAME_H
 #define GAME_H
 #include "GameState.h"
+#include "Noncopyable.h"
 #include <stack>
 
-class Game{
+class Game : public Noncopyable 
+{
  public:
   Game();
-  // Game(Game& rhs);
-  // Game& operator=(Game& rhs);
   ~Game();
   int clear();
 

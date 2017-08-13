@@ -5,7 +5,8 @@
 #include "Map.h"
 #include "Mob.h"
 
-class GameplayState: public GameState
+class GameplayState : public GameState
+                    , public Noncopyable
 {
 public:
   GameplayState();
@@ -15,6 +16,7 @@ public:
   void update();
   void draw();
 
+private:
   Map map_;
 
 

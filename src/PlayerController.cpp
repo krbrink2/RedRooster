@@ -2,21 +2,24 @@
 #include "Mob.h"
 #include <cmath>
 
+// Constructor
 PlayerController::PlayerController()
 {
-
 }
 
+// Take keyboard input
 void PlayerController::takeInput(sf::Event event)
 {
   eventQueue_.push(event);
 }
 
+// Return true if event queue is empty
 bool PlayerController::eventQueueEmpty()
 {
   return eventQueue_.empty();
 }
 
+// Process all events in event queue, then apply them to player mob.
 void PlayerController::act()
 {
   //@TODO finish as needed
@@ -73,6 +76,7 @@ void PlayerController::act()
     momentum_ = sf::Vector2f(0, 0);
   }
 
+  // Apply step to player mob
   pMob_->step(momentum_);
   momentum_ *= drag_;
 }

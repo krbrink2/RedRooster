@@ -18,6 +18,8 @@ public:
   sf::Texture texture_;
   sf::Sprite sprite_;
   sf::Vector2f position_ = sf::Vector2f(0, 0);
+  double width_ = 100;
+  double height_ = 100;
 };
 
 

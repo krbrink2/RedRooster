@@ -22,12 +22,16 @@ public:
 	void step(sf::Vector2f vector);
 	void setPosition(double x, double y);
 	void setPosition(sf::Vector2f pos);
+	void setWidth(double w);
+	void setHeight(double h);
 	sf::Vector2f getPosition();
 
 	sf::Texture texture_;
 	sf::Sprite sprite_;
 	double scale_ = 1;
 	sf::Vector2f position_ = sf::Vector2f(0, 0);
+	double width_ = 100;
+	double height_ = 100;
 	MobController* pAttachedMobController_; // DOES live here
 
 };

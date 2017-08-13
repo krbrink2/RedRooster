@@ -3,15 +3,15 @@
 #include <vector>
 #include "Globals.h"
 #include "Mob.h"
+#include "Noncopyable.h"
 #include "Obstacle.h"
 
 class PlayerController;
 
-class Map{
+class Map : public Noncopyable
+{
 public:
 	Map();
-	//Map(Map& rhs);
-	//Map& operator=(Map& rhs);
 	~Map();
 	int clear();
 
@@ -19,6 +19,7 @@ public:
 	//void addMob(Mob& mob);
 	void addMobPtr(Mob* pMob);
 	void addObstacle(Obstacle* pObstacle);
+	
 	void update();
 	void draw();
 

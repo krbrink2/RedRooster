@@ -34,6 +34,7 @@ int main(){
     // Update Game
     Gbl::game.update();
 
+    // Check to see if game has ended.
     if(!Gbl::game.isRunning())
     {
       Gbl::game.clear();

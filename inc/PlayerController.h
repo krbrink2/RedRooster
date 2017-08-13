@@ -10,7 +10,7 @@ class PlayerController: public MobController
 public:
 	PlayerController();
 
-	void takeInput(sf::Event event);
+  void takeInput(sf::Event event);
   void act();
   bool eventQueueEmpty();
 

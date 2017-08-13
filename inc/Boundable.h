@@ -8,8 +8,8 @@ class Boundable
 public:
   struct BoundingBox
   {
-    sf::Vector2f min_ = sf::Vector2f(-.5, -.5);
-    sf::Vector2f max_ = sf::Vector2f(.5, .5);
+    sf::Vector2f min_ = sf::Vector2f(-1, -1);
+    sf::Vector2f max_ = sf::Vector2f(1, 1);
     
   };
 
