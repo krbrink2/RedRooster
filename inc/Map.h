@@ -28,11 +28,12 @@ public:
 
   Camera camera_;
 
-//private:
 	std::vector<Mob*> mobPtrs_;
 	std::vector<Obstacle*> obstaclePtrs_;
 
 	Mob* pPlayerMob_;	// Does NOT live here.
+
+//private:
 	PlayerController* pPlayerController_; // Does NOT live here
 	
 

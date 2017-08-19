@@ -62,6 +62,7 @@ void Map::update()
   {
     (*it)->update();
   }
+  camera_.update();
 }
 
 // Draw each mob & obstacle to screen

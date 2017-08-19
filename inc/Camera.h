@@ -15,6 +15,8 @@ public:
   void          setFocalPoint(sf::Vector2f fp);
   void          setPMap(Map* pMap);
 
+  void          update();
+
 //private:
   Map* pMap_;
   double viewScale_         = 1;

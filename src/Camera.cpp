@@ -1,4 +1,5 @@
 #include "Camera.h"
+#include "Map.h"
 
 Camera::Camera()
 {
@@ -27,4 +28,9 @@ void Camera::setFocalPoint(sf::Vector2f fp)
 void Camera::setPMap(Map* pMap)
 {
   pMap_ = pMap;
+}
+
+void Camera::update()
+{
+  setFocalPoint(Gbl::pMap->pPlayerMob_->getPosition());
 }
