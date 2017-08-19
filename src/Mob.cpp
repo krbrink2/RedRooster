@@ -1,4 +1,5 @@
 #include "Mob.h"
+#include "Map.h"
 #include "MobController.h"
 #include "PlayerController.h"
 
@@ -74,7 +75,14 @@ void Mob::setHeight(double h)
 void Mob::draw()
 {
   // @TODO: this needs to set sprite scale based on both Mob scale and Camera scale
-  Gbl::game.drawSprite(sprite_);
+  sf::Vector2f viewPosition = position_ - Gbl::pMap->camera_.getFocalPoint();
+  viewPosition /= (float) Gbl::pMap->camera_.getViewScale();
+
+  double viewScale = (float) scale_ / Gbl::pMap->camera_.getViewScale();
+
+  sprite_.setPosition(viewPosition);
+  sprite_.setScale(sf::Vector2f(viewScale, viewScale));
+  Drawable::draw();
 }
 
 sf::Vector2f Mob::getPosition()
