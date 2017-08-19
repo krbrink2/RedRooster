@@ -1,6 +1,7 @@
 #ifndef MAP_H
 #define MAP_H
 #include <vector>
+#include "Camera.h"
 #include "Globals.h"
 #include "Mob.h"
 #include "Noncopyable.h"
@@ -25,6 +26,7 @@ public:
 
 	bool checkForCollision(sf::Vector2f step, Boundable& b) const;
 
+  Camera camera_;
 	std::vector<Mob*> mobPtrs_;
 	std::vector<Obstacle*> obstaclePtrs_;
 

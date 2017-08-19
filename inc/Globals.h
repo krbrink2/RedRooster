@@ -7,6 +7,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include "Game.h"
+#include "Noncopyable.h"
 
 
 #define FRAMES_PER_SECOND   (25)

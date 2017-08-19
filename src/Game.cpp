@@ -3,7 +3,7 @@
 
 // Constructor
 Game::Game()
-	: window_(sf::VideoMode(600, 400), GAME_TITLE) //, sf::Style::Fullscreen),
+	: window_(sf::VideoMode(gameWindowWidth_, gameWindowHeight_), GAME_TITLE) //, sf::Style::Fullscreen),
 	, run_(true)
 {
 }

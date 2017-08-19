@@ -4,9 +4,12 @@
 #include "Noncopyable.h"
 #include <stack>
 
+#define GAME_WINDOW_WIDTH   (800)
+#define GAME_WINDOW_HEIGHT  (600)
+
 class Game : public Noncopyable 
 {
- public:
+public:
   Game();
   ~Game();
   int clear();
@@ -25,6 +28,9 @@ class Game : public Noncopyable
   void update();
 
   bool isRunning();
+
+  int gameWindowWidth_  = GAME_WINDOW_WIDTH;
+  int gameWindowHeight_ = GAME_WINDOW_HEIGHT;
 
   sf::Clock clock_;
   sf::RenderWindow window_;
