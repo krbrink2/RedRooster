@@ -32,5 +32,14 @@ void Camera::setPMap(Map* pMap)
 
 void Camera::update()
 {
-  setFocalPoint(Gbl::pMap->pPlayerMob_->getPosition());
+  const float elasticity = .5;
+  // If Camera is not very close to player mob, close part of the distance.
+  sf::Vector2f playerPos = Gbl::pMap->pPlayerMob_->getPosition();
+  sf::Vector2f cameraToPlayerVector = playerPos - getFocalPoint();
+  if(cameraToPlayerVector.x + cameraToPlayerVector.y < 3)
+  {
+    // If very close, then leave the camera be.
+    return;
+  }
+  setFocalPoint(getFocalPoint() + (cameraToPlayerVector * elasticity));
 }
