@@ -1,4 +1,5 @@
 #include "Obstacle.h"
+#include "Map.h"
 
 Obstacle::Obstacle()
 {
@@ -17,18 +18,14 @@ Obstacle::Obstacle(const std::string fileName)
 
 void Obstacle::draw()
 {
-  Gbl::game.drawSprite(sprite_);
-}
+  sf::Vector2f viewPosition = position_ - Gbl::pMap->camera_.getFocalPoint();
+  viewPosition /= (float) Gbl::pMap->camera_.getViewScale();
 
-int Obstacle::loadTexture(const std::string fileName)
-{
-  if(!texture_.loadFromFile(fileName))
-  {
-    std::cout << "Load error in " << __PRETTY_FUNCTION__ << std::endl;
-    return -1;
-  }
-  sprite_.setTexture(texture_);
-  return 0;
+  double viewScale = (float) scale_ / Gbl::pMap->camera_.getViewScale();
+
+  sprite_.setPosition(viewPosition);
+  sprite_.setScale(sf::Vector2f(viewScale, viewScale));
+  Drawable::draw();
 }
 
 void Obstacle::setPosition(sf::Vector2f pos)

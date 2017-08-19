@@ -1,7 +1,7 @@
 #include "Camera.h"
 
 Camera::Camera()
-  : viewScale_(1)
+  : viewScale_(2)
   , focalPoint_(sf::Vector2f(0, 0))
 {
 }
