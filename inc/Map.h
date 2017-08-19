@@ -27,6 +27,8 @@ public:
 	bool checkForCollision(sf::Vector2f step, Boundable& b) const;
 
   Camera camera_;
+
+//private:
 	std::vector<Mob*> mobPtrs_;
 	std::vector<Obstacle*> obstaclePtrs_;
 

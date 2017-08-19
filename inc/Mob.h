@@ -26,12 +26,11 @@ public:
 	void setHeight(double h);
 	sf::Vector2f getPosition();
 
-	sf::Texture texture_;
-	sf::Sprite sprite_;
-	double scale_ = 1;
-	sf::Vector2f position_ = sf::Vector2f(0, 0);
-	double width_ = 100;
-	double height_ = 100;
+//private:
+  double scale_            = 1;
+  sf::Vector2f position_   = sf::Vector2f(0, 0);
+	double width_            = 100;
+	double height_           = 100;
 	MobController* pAttachedMobController_; // DOES live here
 
 };
