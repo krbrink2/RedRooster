@@ -2,17 +2,20 @@
 #define MOB_H
 #include "Globals.h"
 #include "Boundable.h"
+#include "Drawable.h"
 // Do NOT include MobController.h
 
 class MobController;
 
-class Mob: public Boundable{
+class Mob
+  : public Boundable
+  , public Drawable
+{
 public:
 	Mob();
 	Mob(const std::string fileName);
 	~Mob();
 
-	int loadTexture(const std::string fileName);
 	void attachMobController(MobController* mobController);
 
 	void takeInput(sf::Event event);

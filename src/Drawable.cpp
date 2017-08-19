@@ -1,11 +1,12 @@
 #include "Drawable.h"
 
 Drawable::Drawable()
-{
+{}
 
-}
+Drawable::~Drawable()
+{}
 
-int Drawable::loadTexture(const std::string filename)
+int Drawable::loadTexture(const std::string fileName)
 {
   if(!texture_.loadFromFile(fileName))
   {
@@ -14,4 +15,9 @@ int Drawable::loadTexture(const std::string filename)
   }
   sprite_.setTexture(texture_);
   return 0;
+}
+
+void Drawable::draw()
+{  
+  Gbl::game.drawSprite(sprite_);
 }

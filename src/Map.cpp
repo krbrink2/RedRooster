@@ -14,6 +14,7 @@ Map::Map()
   pPlayerMob_->attachMobController(pPlayerController_);
   addMobPtr(pPlayerMob_);
   addDefaults();
+  camera_.setPMap(this);
 }
 
 Map::~Map()

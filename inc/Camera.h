@@ -1,22 +1,24 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 #include "Globals.h"
-#include "Map.h"
 
+class Map;
 
 class Camera : public Noncopyable
 {
 public:
   Camera();
 
-  double        getViewScale();
-  sf::Vector2f   getFocalPoint();
+  double        getViewScale() const;
+  sf::Vector2f  getFocalPoint() const;
   void          setViewScale(double vs);
   void          setFocalPoint(sf::Vector2f fp);
+  void          setPMap(Map* pMap);
 
-
-  double viewScale;
-  sf::Vector2f focalPoint;
+//private:
+  Map* pMap_;
+  double viewScale_;
+  sf::Vector2f focalPoint_;
 };
 
 #endif

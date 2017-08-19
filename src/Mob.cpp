@@ -73,6 +73,7 @@ void Mob::setHeight(double h)
 
 void Mob::draw()
 {
+  // @TODO: this needs to set sprite scale based on both Mob scale and Camera scale
   Gbl::game.drawSprite(sprite_);
 }
 

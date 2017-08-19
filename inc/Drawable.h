@@ -1,5 +1,6 @@
 #ifndef DRAWABLE_H
 #define DRAWABLE_H
+#include <string>
 #include "Globals.h"
 
 
@@ -16,6 +17,6 @@ public:
 //protected:
   sf::Texture texture_;
   sf::Sprite sprite_;
-}
+};
 
 #endif
