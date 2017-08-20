@@ -3,18 +3,17 @@
 #include <time.h>
 #include <iostream>
 #include "Globals.h"
-#include "GameplayState.h"
+#include "MainMenuState.h"
+#include "MenuState.h"
 
-int main(){
+int main(int argc, char* argv[]){
   // Prep for main loop
   // Ticks to skip
   sf::Time skipTime = sf::milliseconds(SKIP_TICKS);
-  
-  // To be removed:
-
 
   // Set up game
-  Gbl::game.pushGameState(new GameplayState());
+  //Gbl::game.pushGameState(new GameplayState());
+  Gbl::game.pushGameState(new MainMenuState());
 
   while (Gbl::game.run_){  // Main loop
     // Get events
