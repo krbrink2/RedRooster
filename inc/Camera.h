@@ -19,8 +19,8 @@ public:
 
 //private:
   Map* pMap_;
-  double viewScale_         = 1;
-  sf::Vector2f focalPoint_  = sf::Vector2f(0, 0);
+  double viewScale_;
+  sf::Vector2f focalPoint_ ;
 };
 
 #endif

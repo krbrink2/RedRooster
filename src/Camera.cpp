@@ -2,6 +2,8 @@
 #include "Map.h"
 
 Camera::Camera()
+  : viewScale_(1)
+  , focalPoint_(sf::Vector2f(0, 0))
 {
 }
 
@@ -32,9 +34,11 @@ void Camera::setPMap(Map* pMap)
 
 void Camera::update()
 {
-  const float elasticity = .2;
+  const float elasticity = .1;
   // If Camera is not very close to player mob, close part of the distance.
   sf::Vector2f playerPos = Gbl::pMap->pPlayerMob_->getPosition();
+  playerPos.x += Gbl::pMap->pPlayerMob_->getWidth()/2;
+  playerPos.y += Gbl::pMap->pPlayerMob_->getHeight()/2;
   sf::Vector2f cameraToPlayerVector = playerPos - getFocalPoint();
   if(abs(cameraToPlayerVector.x) + abs(cameraToPlayerVector.y) < 3)
   {

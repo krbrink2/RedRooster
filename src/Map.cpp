@@ -13,6 +13,13 @@ Map::Map()
   pPlayerController_ = new PlayerController();
   pPlayerMob_->attachMobController(pPlayerController_);
   addMobPtr(pPlayerMob_);
+
+  // Set initial camera focal point
+  sf::Vector2f initFocalPoint;
+  initFocalPoint.x = Gbl::pMap->pPlayerMob_->getWidth() * .5;
+  initFocalPoint.y = Gbl::pMap->pPlayerMob_->getHeight() * .5;
+  camera_.setFocalPoint(initFocalPoint);
+
   addDefaults();
   camera_.setPMap(this);
 }

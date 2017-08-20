@@ -51,6 +51,16 @@ void Mob::step(sf::Vector2f vector)
   boundingBox_.max_ += vector;
 }
 
+double Mob::getWidth()
+{
+  return width_;
+}
+
+double Mob::getHeight()
+{
+  return height_;
+}
+
 void Mob::setPosition(double x, double y)
 {
   setPosition(sf::Vector2f(x, y));
@@ -79,7 +89,9 @@ void Mob::draw()
 
   double viewScale = (float) scale_ / Gbl::pMap->camera_.getViewScale();
 
-  sprite_.setPosition(viewPosition);
+  // Offset to make camera go to middle of screen, not top right corner.
+  sf::Vector2f originToCenter(Gbl::game.gameWindowWidth_/2, Gbl::game.gameWindowHeight_/2);
+  sprite_.setPosition(viewPosition + originToCenter);
   sprite_.setScale(sf::Vector2f(viewScale, viewScale));
   Drawable::draw();
 }

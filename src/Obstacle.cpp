@@ -23,7 +23,9 @@ void Obstacle::draw()
 
   double viewScale = (float) scale_ / Gbl::pMap->camera_.getViewScale();
 
-  sprite_.setPosition(viewPosition);
+  // Offset to make camera go to middle of screen, not top right corner.
+  sf::Vector2f originToCenter(Gbl::game.gameWindowWidth_/2, Gbl::game.gameWindowHeight_/2);
+  sprite_.setPosition(viewPosition + originToCenter);
   sprite_.setScale(sf::Vector2f(viewScale, viewScale));
   Drawable::draw();
 }

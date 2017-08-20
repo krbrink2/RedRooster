@@ -23,11 +23,13 @@ public:
 	void draw();
 	void step(double x, double y);
 	void step(sf::Vector2f vector);
+	double getWidth();
+	double getHeight();
+	sf::Vector2f getPosition();
 	void setPosition(double x, double y);
 	void setPosition(sf::Vector2f pos);
 	void setWidth(double w);
 	void setHeight(double h);
-	sf::Vector2f getPosition();
 
 //private:
   double scale_            = 1;
