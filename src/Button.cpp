@@ -13,10 +13,16 @@ Button::~Button()
 
 void Button::update(bool active)
 {
+  // Make sure the sprite's origin is set. 
+  // This is a poor place to do this, but otherwise
+  // I'd have to overload several Drawable methods.
+  //
+  sprite_.setOrigin(sf::Vector2f(sprite_.getTexture()->getSize()) * .5f);
+
   if(active)
   {
     activeFrames_ = 0;
-    scale_ = .2;
+    scale_ = .15;
   }
   else
   {
