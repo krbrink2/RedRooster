@@ -6,6 +6,11 @@ Game::Game()
 	: window_(sf::VideoMode(gameWindowWidth_, gameWindowHeight_), GAME_TITLE) //, sf::Style::Fullscreen),
 	, run_(true)
 {
+	if(!font_.loadFromFile(FONT))
+	{
+		std::cout << "Load error in " << __PRETTY_FUNCTION__ << std::endl;
+		run_ = false;
+	}
 }
 
 // // Copy constructor

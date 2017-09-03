@@ -17,6 +17,7 @@
 #define ICON                "assets/icon.png"
 #define OBSTACLE            "assets/brick.jpg"
 #define BUTTON              "assets/button.png"
+#define FONT                "assets/Aileron-Regular.otf"
 
 // Forward declarations
 class Map;

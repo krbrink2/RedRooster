@@ -24,6 +24,7 @@ public:
   double         scale_;
   sf::Vector2f   position_;
   std::string    string_;
+  sf::Text       text_;
   int            activeFrames_;
 
 };

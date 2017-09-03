@@ -32,8 +32,10 @@ public:
   int gameWindowWidth_  = GAME_WINDOW_WIDTH;
   int gameWindowHeight_ = GAME_WINDOW_HEIGHT;
 
+// private:
   sf::Clock clock_;
   sf::RenderWindow window_;
+  sf::Font font_;
   bool run_;
   std::stack<GameState*> gameStatePtrStack_;
   

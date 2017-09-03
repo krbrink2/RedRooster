@@ -6,7 +6,11 @@ Button::Button()
   , position_(sf::Vector2f(0, 0))
   , string_("Hello, world!")
   , activeFrames_(0)
-{}
+{
+  text_.setFont(Gbl::game.font_);
+  text_.setCharacterSize(24);
+  //text_.setFillColor(sf::Color::Black);
+}
 
 Button::~Button()
 {}
@@ -37,6 +41,7 @@ void Button::draw()
   // @TODO move the sprite's position to account for scale
   sprite_.setScale(sf::Vector2f(scale_, scale_));
   Drawable::draw();
+  Gbl::game.window_.draw(text_);
 }
 
 std::string Button::getString() const
@@ -52,6 +57,7 @@ sf::Vector2f Button::getPosition() const
 void Button::setString(std::string string)
 {
   string_ = string;
+  text_.setString(string_);
 }
 
 void Button::setPosition(double x, double y)
