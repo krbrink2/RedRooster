@@ -3,7 +3,6 @@
 #include <time.h>
 #include <iostream>
 #include "Globals.h"
-#include "MainMenuState.h"
 #include "MenuState.h"
 
 int main(int argc, char* argv[]){
@@ -13,7 +12,7 @@ int main(int argc, char* argv[]){
 
   // Set up game
   //Gbl::game.pushGameState(new GameplayState());
-  Gbl::game.pushGameState(new MainMenuState());
+  Gbl::game.pushGameState(new MenuState());
 
   while (Gbl::game.run_){  // Main loop
     // Get events

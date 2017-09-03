@@ -2,7 +2,16 @@
 
 MenuState::MenuState()
   : activeButton_(0)
-{}
+{
+  // Default to mainMenu
+  setup(mainMenu);
+}
+
+MenuState::MenuState(menuType_t type)
+  : activeButton_(0)
+{
+  setup(type);
+}
 
 MenuState::~MenuState()
 {}
@@ -41,3 +50,37 @@ void MenuState::draw()
   } 
 }
 
+void MenuState::setup(menuType_t type)
+{
+  switch(type)
+  {
+    case mainMenu:
+      setupMainMenu();
+      break;
+    default:
+      setupMainMenu();
+      break;
+  }
+}
+
+void MenuState::setupMainMenu()
+{
+  // Add main menu buttons
+  // Add start button
+  buttons_.push_back(Button());
+  buttons_.back().loadTexture(BUTTON);
+  buttons_.back().setPosition(sf::Vector2f(400, 0));
+  buttons_.back().setString(std::string("Start!"));
+
+  // Add options button
+  buttons_.push_back(Button());
+  buttons_.back().loadTexture(BUTTON);
+  buttons_.back().setPosition(sf::Vector2f(400, 200));
+  buttons_.back().setString(std::string("Options"));
+
+  // Add quit button
+  buttons_.push_back(Button());
+  buttons_.back().loadTexture(BUTTON);
+  buttons_.back().setPosition(sf::Vector2f(400, 400));
+  buttons_.back().setString(std::string("Quit"));
+}

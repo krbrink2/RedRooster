@@ -16,7 +16,7 @@
 #define LARGE_ROOSTER       "assets/rooster.png"
 #define ICON                "assets/icon.png"
 #define OBSTACLE            "assets/brick.jpg"
-#define BUTTON              "assets/butotn.jpg"
+#define BUTTON              "assets/button.jpg"
 
 // Forward declarations
 class Map;

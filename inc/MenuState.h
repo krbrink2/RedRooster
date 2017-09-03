@@ -10,15 +10,24 @@ class MenuState
   , public Noncopyable
 {
 public:
-  MenuState();
-  // Declare but define anyways, thereby forcing MenuState to be pure abstract.
-  virtual ~MenuState() = 0;
 
-  virtual void takeInput(sf::Event event);
-  virtual void update();
-  virtual void draw();
+  enum menuType_t
+  {
+    mainMenu
+  };
+
+  MenuState();
+  MenuState(menuType_t type);
+  ~MenuState();
+
+  void takeInput(sf::Event event);
+  void update();
+  void draw();
 
 //private 
+  void setup(menuType_t type);
+  void setupMainMenu();
+
   std::vector<Button> buttons_;
   int activeButton_;
 };
