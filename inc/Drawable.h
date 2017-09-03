@@ -11,6 +11,7 @@ public:
   virtual ~Drawable();
 
   int loadTexture(const std::string fileName);
+  void setTexture(const sf::Texture & texture);
   virtual void draw();
 
 

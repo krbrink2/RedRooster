@@ -28,6 +28,7 @@ public:
   void setup(menuType_t type);
   void setupMainMenu();
 
+  std::vector<sf::Texture> textures_;
   std::vector<Button> buttons_;
   int activeButton_;
 };

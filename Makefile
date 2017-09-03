@@ -57,7 +57,6 @@ SOURCES       = src/Boundable.cpp \
 		src/GameState.cpp \
 		src/Globals.cpp \
 		src/main.cpp \
-		src/MainMenuState.cpp \
 		src/Map.cpp \
 		src/MenuState.cpp \
 		src/Mob.cpp \
@@ -73,7 +72,6 @@ OBJECTS       = obj/Boundable.o \
 		obj/GameState.o \
 		obj/Globals.o \
 		obj/main.o \
-		obj/MainMenuState.o \
 		obj/Map.o \
 		obj/MenuState.o \
 		obj/Mob.o \
@@ -147,7 +145,6 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		inc/GameplayState.h \
 		inc/GameState.h \
 		inc/Globals.h \
-		inc/MainMenuState.h \
 		inc/Map.h \
 		inc/MenuState.h \
 		inc/Mob.h \
@@ -163,7 +160,6 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		src/GameState.cpp \
 		src/Globals.cpp \
 		src/main.cpp \
-		src/MainMenuState.cpp \
 		src/Map.cpp \
 		src/MenuState.cpp \
 		src/Mob.cpp \
@@ -339,8 +335,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents inc/Boundable.h inc/Button.h inc/Camera.h inc/Drawable.h inc/Game.h inc/GameplayState.h inc/GameState.h inc/Globals.h inc/MainMenuState.h inc/Map.h inc/MenuState.h inc/Mob.h inc/MobController.h inc/Noncopyable.h inc/Obstacle.h inc/PlayerController.h $(DISTDIR)/
-	$(COPY_FILE) --parents src/Boundable.cpp src/Button.cpp src/Camera.cpp src/Drawable.cpp src/Game.cpp src/GameplayState.cpp src/GameState.cpp src/Globals.cpp src/main.cpp src/MainMenuState.cpp src/Map.cpp src/MenuState.cpp src/Mob.cpp src/MobController.cpp src/Obstacle.cpp src/PlayerController.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents inc/Boundable.h inc/Button.h inc/Camera.h inc/Drawable.h inc/Game.h inc/GameplayState.h inc/GameState.h inc/Globals.h inc/Map.h inc/MenuState.h inc/Mob.h inc/MobController.h inc/Noncopyable.h inc/Obstacle.h inc/PlayerController.h $(DISTDIR)/
+	$(COPY_FILE) --parents src/Boundable.cpp src/Button.cpp src/Camera.cpp src/Drawable.cpp src/Game.cpp src/GameplayState.cpp src/GameState.cpp src/Globals.cpp src/main.cpp src/Map.cpp src/MenuState.cpp src/Mob.cpp src/MobController.cpp src/Obstacle.cpp src/PlayerController.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -456,21 +452,10 @@ obj/main.o: src/main.cpp inc/Globals.h \
 		inc/Game.h \
 		inc/GameState.h \
 		inc/Noncopyable.h \
-		inc/MainMenuState.h \
 		inc/MenuState.h \
 		inc/Button.h \
 		inc/Drawable.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/main.o src/main.cpp
-
-obj/MainMenuState.o: src/MainMenuState.cpp inc/MainMenuState.h \
-		inc/Globals.h \
-		inc/Game.h \
-		inc/GameState.h \
-		inc/Noncopyable.h \
-		inc/MenuState.h \
-		inc/Button.h \
-		inc/Drawable.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/MainMenuState.o src/MainMenuState.cpp
 
 obj/Map.o: src/Map.cpp inc/Map.h \
 		inc/Camera.h \

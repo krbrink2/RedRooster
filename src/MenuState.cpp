@@ -65,22 +65,26 @@ void MenuState::setup(menuType_t type)
 
 void MenuState::setupMainMenu()
 {
+  // Load main menu textures
+  textures_.push_back(sf::Texture());
+  textures_.back().loadFromFile(BUTTON);
+
   // Add main menu buttons
   // Add start button
   buttons_.push_back(Button());
-  buttons_.back().loadTexture(BUTTON);
+  buttons_.back().setTexture(textures_.back());
   buttons_.back().setPosition(sf::Vector2f(400, 0));
   buttons_.back().setString(std::string("Start!"));
 
   // Add options button
   buttons_.push_back(Button());
-  buttons_.back().loadTexture(BUTTON);
+  buttons_.back().setTexture(textures_.back());
   buttons_.back().setPosition(sf::Vector2f(400, 200));
   buttons_.back().setString(std::string("Options"));
 
   // Add quit button
   buttons_.push_back(Button());
-  buttons_.back().loadTexture(BUTTON);
+  buttons_.back().setTexture(textures_.back());
   buttons_.back().setPosition(sf::Vector2f(400, 400));
   buttons_.back().setString(std::string("Quit"));
 }
