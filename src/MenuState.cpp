@@ -70,21 +70,23 @@ void MenuState::setupMainMenu()
   textures_.back().loadFromFile(BUTTON);
 
   // Add main menu buttons
+  int midscreen    = Gbl::game.gameWindowWidth_ * .5;
+  int windowHeight = Gbl::game.gameWindowHeight_;
   // Add start button
   buttons_.push_back(Button());
   buttons_.back().setTexture(textures_.back());
-  buttons_.back().setPosition(sf::Vector2f(400, 0));
+  buttons_.back().setPosition(sf::Vector2f(midscreen, windowHeight*.25));
   buttons_.back().setString(std::string("Start!"));
 
   // Add options button
   buttons_.push_back(Button());
   buttons_.back().setTexture(textures_.back());
-  buttons_.back().setPosition(sf::Vector2f(400, 200));
+  buttons_.back().setPosition(sf::Vector2f(midscreen, windowHeight*.5));
   buttons_.back().setString(std::string("Options"));
 
   // Add quit button
   buttons_.push_back(Button());
   buttons_.back().setTexture(textures_.back());
-  buttons_.back().setPosition(sf::Vector2f(400, 400));
+  buttons_.back().setPosition(sf::Vector2f(midscreen, windowHeight*.75));
   buttons_.back().setString(std::string("Quit"));
 }

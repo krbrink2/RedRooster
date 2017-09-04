@@ -17,12 +17,6 @@ Button::~Button()
 
 void Button::update(bool active)
 {
-  // Make sure the sprite's origin is set. 
-  // This is a poor place to do this, but otherwise
-  // I'd have to overload several Drawable methods.
-  //
-  sprite_.setOrigin(sf::Vector2f(sprite_.getTexture()->getSize()) * .5f);
-
   if(active)
   {
     activeFrames_ = 0;
@@ -38,9 +32,15 @@ void Button::update(bool active)
 void Button::draw()
 {
   sprite_.setPosition(position_);
-  // @TODO move the sprite's position to account for scale
+  sprite_.setOrigin(sf::Vector2f(sprite_.getTexture()->getSize()) * .5f);
   sprite_.setScale(sf::Vector2f(scale_, scale_));
   Drawable::draw();
+
+
+  text_.setPosition(position_);
+  sf::FloatRect textBounds = text_.getLocalBounds();
+  text_.setOrigin(sf::Vector2f(textBounds.width*.5, textBounds.height*.5));
+  text_.setScale(sf::Vector2f(scale_*10, scale_*10));
   Gbl::game.window_.draw(text_);
 }
 
