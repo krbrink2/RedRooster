@@ -24,13 +24,17 @@ public:
   void update();
   void draw();
 
+  void press();
+
 //private 
   void setup(menuType_t type);
   void setupMainMenu();
+  void launchGame();
 
   std::vector<sf::Texture> textures_;
   std::vector<Button> buttons_;
   int activeButton_;
+  GameState* pChildState_;
 };
 
 #endif

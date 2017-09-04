@@ -6,6 +6,7 @@ Button::Button()
   , position_(sf::Vector2f(0, 0))
   , string_("Hello, world!")
   , activeFrames_(0)
+  , callback_(NULL)
 {
   text_.setFont(Gbl::game.font_);
   text_.setCharacterSize(24);
@@ -36,11 +37,12 @@ void Button::draw()
   sprite_.setScale(sf::Vector2f(scale_, scale_));
   Drawable::draw();
 
-
+  float textScaleOffset = 15;
   text_.setPosition(position_);
   sf::FloatRect textBounds = text_.getLocalBounds();
-  text_.setOrigin(sf::Vector2f(textBounds.width*.5, textBounds.height*.5));
-  text_.setScale(sf::Vector2f(scale_*10, scale_*10));
+  // Dunno why origin's y gets too low when it's halved. Something to look into.
+  text_.setOrigin(sf::Vector2f(textBounds.width*.5, textBounds.height));
+  text_.setScale(sf::Vector2f(scale_*textScaleOffset, scale_*textScaleOffset));
   Gbl::game.window_.draw(text_);
 }
 
@@ -68,4 +70,23 @@ void Button::setPosition(double x, double y)
 void Button::setPosition(sf::Vector2f pos)
 {
   position_ = pos;
+}
+
+// Sets the action performed when pressed. Argument is a function pointer.
+void Button::setCallback(void (*callback)())
+{
+  callback_ = callback;
+}
+
+void Button::press()
+{
+  // Sanity check
+  if(NULL == callback_)
+  {
+    std::cout << "Null callback error in " << __PRETTY_FUNCTION__ << std::endl;
+    Gbl::game.endGame();
+    return;
+  }
+
+  callback_();
 }
