@@ -111,7 +111,7 @@ void MenuState::setupMainMenu()
   buttons_.back().setTexture(textures_.back());
   buttons_.back().setPosition(sf::Vector2f(midscreen, windowHeight*.25));
   buttons_.back().setString(std::string("Start!"));
-  buttons_.back().setCallback(&launchGame);
+  buttons_.back().setCallback(&MenuState::launchGame);
 
   // Add options button
   buttons_.push_back(Button());

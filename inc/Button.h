@@ -19,7 +19,7 @@ public:
   void setString(std::string string);
   void setPosition(double x, double y);
   void setPosition(sf::Vector2f pos);
-  void setCallback(void (*callback)());
+  void setCallback(void *callback);
 
   void press();
 
@@ -30,7 +30,7 @@ public:
   sf::Text       text_;
   int            activeFrames_;
   // The action performed when pressed.
-  void           (*callback_)();
+  void (*callback_)();
 
 };
 

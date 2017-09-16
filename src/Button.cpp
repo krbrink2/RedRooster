@@ -73,7 +73,7 @@ void Button::setPosition(sf::Vector2f pos)
 }
 
 // Sets the action performed when pressed. Argument is a function pointer.
-void Button::setCallback(void (*callback)())
+void Button::setCallback(void (*callback))
 {
   callback_ = callback;
 }
@@ -88,5 +88,5 @@ void Button::press()
     return;
   }
 
-  callback_();
+  (*callback_)();
 }
