@@ -33,6 +33,8 @@ public:
   int gameWindowHeight_ = GAME_WINDOW_HEIGHT;
 
 // private:
+  void launchGame();
+
   sf::Clock clock_;
   sf::RenderWindow window_;
   sf::Font font_;

@@ -50,7 +50,11 @@ void MenuState::takeInput(sf::Event event)
     // Enter key
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
     {
-      buttons_[activeButton_].press();
+      Button::CallbackToMenuState callback = buttons_[activeButton_].getCallback();
+      if(callback) // Null check
+      {
+        (this->*callback)();
+      }
     }
   }
   std::cout << activeButton_ << std::endl;

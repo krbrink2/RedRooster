@@ -73,20 +73,12 @@ void Button::setPosition(sf::Vector2f pos)
 }
 
 // Sets the action performed when pressed. Argument is a function pointer.
-void Button::setCallback(void (*callback))
+void Button::setCallback(void (MenuState::*callback)())
 {
   callback_ = callback;
 }
 
-void Button::press()
+Button::CallbackToMenuState Button::getCallback()
 {
-  // Sanity check
-  if(NULL == callback_)
-  {
-    std::cout << "Null callback error in " << __PRETTY_FUNCTION__ << std::endl;
-    Gbl::game.endGame();
-    return;
-  }
-
-  (*callback_)();
+  return callback_;
 }

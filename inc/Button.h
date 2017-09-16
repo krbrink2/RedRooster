@@ -3,11 +3,17 @@
 #include "Globals.h"
 #include "Drawable.h"
 
+class MenuState;
 
 class Button
   : public Drawable
 {
 public:
+
+  // The Syntax from the Black Lagoon
+  // Pointer to a void-returning MenuState member function, with no arguments
+  typedef void (MenuState::* CallbackToMenuState)();
+
   Button();
   ~Button();
 
@@ -19,9 +25,8 @@ public:
   void setString(std::string string);
   void setPosition(double x, double y);
   void setPosition(sf::Vector2f pos);
-  void setCallback(void *callback);
-
-  void press();
+  void setCallback(void (MenuState::*callback)());
+  CallbackToMenuState getCallback();
 
 //private:
   double         scale_;
@@ -30,7 +35,7 @@ public:
   sf::Text       text_;
   int            activeFrames_;
   // The action performed when pressed.
-  void (*callback_)();
+  CallbackToMenuState callback_;
 
 };
 

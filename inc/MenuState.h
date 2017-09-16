@@ -29,6 +29,7 @@ public:
 //private 
   void setup(menuType_t type);
   void setupMainMenu();
+  void pressButton();
   void launchGame();
 
   std::vector<sf::Texture> textures_;
