@@ -31,6 +31,7 @@ public:
   void setupMainMenu();
   void pressButton();
   void launchGame();
+  void quitGame();
 
   std::vector<sf::Texture> textures_;
   std::vector<Button> buttons_;

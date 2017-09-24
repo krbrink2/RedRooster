@@ -128,10 +128,16 @@ void MenuState::setupMainMenu()
   buttons_.back().setTexture(textures_.back());
   buttons_.back().setPosition(sf::Vector2f(midscreen, windowHeight*.75));
   buttons_.back().setString(std::string("Quit"));
+  buttons_.back().setCallback(&MenuState::quitGame);
 }
 
 void MenuState::launchGame()
 {
   pChildState_ = new GameplayState();
+}
+
+void MenuState::quitGame()
+{
+  Gbl::game.endGame();
 }
 
