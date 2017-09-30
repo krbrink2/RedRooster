@@ -26,7 +26,6 @@ namespace Gbl{
   extern Game game;
   extern std::vector< std::vector<bool[2]> > maze;
   extern Map* pMap;
-
 }
 
 

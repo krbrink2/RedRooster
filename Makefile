@@ -62,7 +62,9 @@ SOURCES       = src/Boundable.cpp \
 		src/Mob.cpp \
 		src/MobController.cpp \
 		src/Obstacle.cpp \
-		src/PlayerController.cpp 
+		src/PlayerController.cpp \
+		src/Ray.cpp \
+		src/Tile.cpp 
 OBJECTS       = obj/Boundable.o \
 		obj/Button.o \
 		obj/Camera.o \
@@ -77,7 +79,9 @@ OBJECTS       = obj/Boundable.o \
 		obj/Mob.o \
 		obj/MobController.o \
 		obj/Obstacle.o \
-		obj/PlayerController.o
+		obj/PlayerController.o \
+		obj/Ray.o \
+		obj/Tile.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -151,7 +155,9 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		inc/MobController.h \
 		inc/Noncopyable.h \
 		inc/Obstacle.h \
-		inc/PlayerController.h src/Boundable.cpp \
+		inc/PlayerController.h \
+		inc/Ray.h \
+		inc/Tile.h src/Boundable.cpp \
 		src/Button.cpp \
 		src/Camera.cpp \
 		src/Drawable.cpp \
@@ -165,7 +171,9 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		src/Mob.cpp \
 		src/MobController.cpp \
 		src/Obstacle.cpp \
-		src/PlayerController.cpp
+		src/PlayerController.cpp \
+		src/Ray.cpp \
+		src/Tile.cpp
 QMAKE_TARGET  = RedRooster
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = RedRooster
@@ -335,8 +343,8 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents inc/Boundable.h inc/Button.h inc/Camera.h inc/Drawable.h inc/Game.h inc/GameplayState.h inc/GameState.h inc/Globals.h inc/Map.h inc/MenuState.h inc/Mob.h inc/MobController.h inc/Noncopyable.h inc/Obstacle.h inc/PlayerController.h $(DISTDIR)/
-	$(COPY_FILE) --parents src/Boundable.cpp src/Button.cpp src/Camera.cpp src/Drawable.cpp src/Game.cpp src/GameplayState.cpp src/GameState.cpp src/Globals.cpp src/main.cpp src/Map.cpp src/MenuState.cpp src/Mob.cpp src/MobController.cpp src/Obstacle.cpp src/PlayerController.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents inc/Boundable.h inc/Button.h inc/Camera.h inc/Drawable.h inc/Game.h inc/GameplayState.h inc/GameState.h inc/Globals.h inc/Map.h inc/MenuState.h inc/Mob.h inc/MobController.h inc/Noncopyable.h inc/Obstacle.h inc/PlayerController.h inc/Ray.h inc/Tile.h $(DISTDIR)/
+	$(COPY_FILE) --parents src/Boundable.cpp src/Button.cpp src/Camera.cpp src/Drawable.cpp src/Game.cpp src/GameplayState.cpp src/GameState.cpp src/Globals.cpp src/main.cpp src/Map.cpp src/MenuState.cpp src/Mob.cpp src/MobController.cpp src/Obstacle.cpp src/PlayerController.cpp src/Ray.cpp src/Tile.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -390,7 +398,9 @@ obj/Button.o: src/Button.cpp inc/Button.h \
 		inc/Camera.h \
 		inc/Mob.h \
 		inc/Boundable.h \
-		inc/Obstacle.h
+		inc/Obstacle.h \
+		inc/Tile.h \
+		inc/Ray.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/Button.o src/Button.cpp
 
 obj/Camera.o: src/Camera.cpp inc/Camera.h \
@@ -402,7 +412,9 @@ obj/Camera.o: src/Camera.cpp inc/Camera.h \
 		inc/Mob.h \
 		inc/Boundable.h \
 		inc/Drawable.h \
-		inc/Obstacle.h
+		inc/Obstacle.h \
+		inc/Tile.h \
+		inc/Ray.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/Camera.o src/Camera.cpp
 
 obj/Drawable.o: src/Drawable.cpp inc/Drawable.h \
@@ -429,6 +441,8 @@ obj/GameplayState.o: src/GameplayState.cpp inc/GameplayState.h \
 		inc/Boundable.h \
 		inc/Drawable.h \
 		inc/Obstacle.h \
+		inc/Tile.h \
+		inc/Ray.h \
 		inc/PlayerController.h \
 		inc/MobController.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/GameplayState.o src/GameplayState.cpp
@@ -445,7 +459,9 @@ obj/Globals.o: src/Globals.cpp inc/Globals.h \
 		inc/Mob.h \
 		inc/Boundable.h \
 		inc/Drawable.h \
-		inc/Obstacle.h
+		inc/Obstacle.h \
+		inc/Tile.h \
+		inc/Ray.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/Globals.o src/Globals.cpp
 
 obj/main.o: src/main.cpp inc/Globals.h \
@@ -467,6 +483,8 @@ obj/Map.o: src/Map.cpp inc/Map.h \
 		inc/Boundable.h \
 		inc/Drawable.h \
 		inc/Obstacle.h \
+		inc/Tile.h \
+		inc/Ray.h \
 		inc/PlayerController.h \
 		inc/MobController.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/Map.o src/Map.cpp
@@ -477,7 +495,15 @@ obj/MenuState.o: src/MenuState.cpp inc/MenuState.h \
 		inc/GameState.h \
 		inc/Noncopyable.h \
 		inc/Button.h \
-		inc/Drawable.h
+		inc/Drawable.h \
+		inc/GameplayState.h \
+		inc/Map.h \
+		inc/Camera.h \
+		inc/Mob.h \
+		inc/Boundable.h \
+		inc/Obstacle.h \
+		inc/Tile.h \
+		inc/Ray.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/MenuState.o src/MenuState.cpp
 
 obj/Mob.o: src/Mob.cpp inc/Mob.h \
@@ -490,6 +516,8 @@ obj/Mob.o: src/Mob.cpp inc/Mob.h \
 		inc/Map.h \
 		inc/Camera.h \
 		inc/Obstacle.h \
+		inc/Tile.h \
+		inc/Ray.h \
 		inc/MobController.h \
 		inc/PlayerController.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/Mob.o src/Mob.cpp
@@ -504,7 +532,9 @@ obj/MobController.o: src/MobController.cpp inc/MobController.h \
 		inc/Mob.h \
 		inc/Boundable.h \
 		inc/Drawable.h \
-		inc/Obstacle.h
+		inc/Obstacle.h \
+		inc/Tile.h \
+		inc/Ray.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/MobController.o src/MobController.cpp
 
 obj/Obstacle.o: src/Obstacle.cpp inc/Obstacle.h \
@@ -516,7 +546,9 @@ obj/Obstacle.o: src/Obstacle.cpp inc/Obstacle.h \
 		inc/Drawable.h \
 		inc/Map.h \
 		inc/Camera.h \
-		inc/Mob.h
+		inc/Mob.h \
+		inc/Tile.h \
+		inc/Ray.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/Obstacle.o src/Obstacle.cpp
 
 obj/PlayerController.o: src/PlayerController.cpp inc/PlayerController.h \
@@ -530,8 +562,16 @@ obj/PlayerController.o: src/PlayerController.cpp inc/PlayerController.h \
 		inc/Mob.h \
 		inc/Boundable.h \
 		inc/Drawable.h \
-		inc/Obstacle.h
+		inc/Obstacle.h \
+		inc/Tile.h \
+		inc/Ray.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/PlayerController.o src/PlayerController.cpp
+
+obj/Ray.o: src/Ray.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/Ray.o src/Ray.cpp
+
+obj/Tile.o: src/Tile.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o obj/Tile.o src/Tile.cpp
 
 ####### Install
 

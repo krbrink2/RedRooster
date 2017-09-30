@@ -6,6 +6,8 @@
 #include "Mob.h"
 #include "Noncopyable.h"
 #include "Obstacle.h"
+#include "Tile.h"
+#include "Ray.h"
 
 class PlayerController;
 
@@ -25,16 +27,22 @@ public:
 	void draw();
 
 	bool checkForCollision(sf::Vector2f step, Boundable& b) const;
+	void createTiles();
+	void castRay(Ray& ray);
 
   Camera camera_;
 
 	std::vector<Mob*> mobPtrs_;
 	std::vector<Obstacle*> obstaclePtrs_;
+	std::vector< std::vector<Tile> > tiles_;
 
 	Mob* pPlayerMob_;	// Does NOT live here.
+	unsigned gridWidth_  = 10;
+	unsigned gridHeight_ = 10;
 
 //private:
 	PlayerController* pPlayerController_; // Does NOT live here
+	int tileSize_;
 	
 
 private:
@@ -42,7 +50,6 @@ private:
 	struct RegularGridBox{
 
 	};
-
 
 };
 

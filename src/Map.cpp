@@ -133,3 +133,19 @@ int Map::clear()
   pPlayerMob_ = NULL;
   return 0;
 }
+
+void Map::createTiles()
+{
+  tiles_.clear();
+  tiles_.resize(gridWidth_);
+  for(int i = 0; i < gridWidth_; i++)
+  {
+    tiles_[i].resize(gridHeight_);
+    for(int j = 0; j < gridHeight_; j++)
+    {
+      tiles_[i][j].setGridSpot(i, j);
+    }
+  }
+
+
+}
